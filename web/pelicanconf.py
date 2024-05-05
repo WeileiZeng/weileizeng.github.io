@@ -1,6 +1,6 @@
 AUTHOR = 'ZWL'
-SITENAME = 'minimal web'
-SITEURL = ""
+SITENAME = 'Weilei Zeng'
+SITEURL = "https://weileizeng.github.io"
 
 PATH = "content"
 
