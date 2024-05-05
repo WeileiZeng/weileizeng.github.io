@@ -18,6 +18,8 @@ AUTHOR_FEED_RSS = None
 
 # Blogroll
 LINKS = (
+    ("localhost:8000","http://localhost:8000"),
+    ("weileizeng.github.io","https://weileizeng.github.io/"),
     ("Pelican", "https://getpelican.com/"),
     ("Python.org", "https://www.python.org/"),
     ("Jinja2", "https://palletsprojects.com/p/jinja/"),
@@ -26,6 +28,7 @@ LINKS = (
 
 # Social widget
 SOCIAL = (
+    ("GitHub","https://github.com/WeileiZeng/weileizeng.github.io/settings/pages"),
     ("You can add links in your config file", "#"),
     ("Another social link", "#"),
 )
