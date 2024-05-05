@@ -10,6 +10,7 @@ set up environment
 python3 -m venv env
 source env/bin/activate
 pip install pelican[markdown] pelican-render-math
+#see also requirements.txt for freeze package versions with Python 3.12.3 tested on Mac OS
 ```
 initilize the repo
 ```
