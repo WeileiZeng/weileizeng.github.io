@@ -35,4 +35,4 @@ DEFAULT_PAGINATION = 10
 # RELATIVE_URLS = True
 
 #add by weilei
-THEME="pelican-themes-master/zurb-F5-basic"
+THEME="../zurb-F5-basic"
