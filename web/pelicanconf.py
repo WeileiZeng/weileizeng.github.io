@@ -1,6 +1,7 @@
 AUTHOR = 'ZWL'
 SITENAME = 'Weilei Zeng'
-SITEURL = "https://weileizeng.github.io"
+# SITEURL = "https://weileizeng.github.io"
+SITEURL = ""
 
 PATH = "content"
 
