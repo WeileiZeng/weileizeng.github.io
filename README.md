@@ -41,3 +41,9 @@ needed by Pelican.
 > Is this your personal page (username.github.io)? (y/N) y
 Done. Your new project is available at /Users/weileizeng/Documents/GitHub/min-web-template/web
 ```
+
+# TODO:
+- show the page using github pages
+- update readme
+  - theme
+  
