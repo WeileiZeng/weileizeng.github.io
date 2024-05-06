@@ -1,8 +1,25 @@
-# a template for a minimal webpage
+# Personal website
 
+project structure
+```
+.
+├── Makefile
+├── README.md
+├── backup
+├── docs		#target folder, root folder for GitHub Pages
+├── env		#python environment, ignored by git
+├── requirements.txt	#python package dependancy
+├── web		#source file
+│  - Conten 		#blog filesent
+│  - Output		#static files
+└── zurb-F5-basic	#pelican theme
+```
 
 # tools
-Python
+- Python
+- Pelican
+- Optional:
+  - bibtex2html
 
 # procedure to produce the repo
 set up environment
@@ -46,4 +63,5 @@ Done. Your new project is available at /Users/weileizeng/Documents/GitHub/min-we
 - show the page using github pages
 - update readme
   - theme
-  
+
+
