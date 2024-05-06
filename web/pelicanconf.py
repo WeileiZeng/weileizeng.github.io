@@ -20,10 +20,10 @@ AUTHOR_FEED_RSS = None
 LINKS = (
     ("localhost:8000","http://localhost:8000"),
     ("weileizeng.github.io","https://weileizeng.github.io/"),
+    ("GitHub","https://github.com/WeileiZeng/weileizeng.github.io"),
     ("Pelican", "https://getpelican.com/"),
     ("Python.org", "https://www.python.org/"),
     ("Jinja2", "https://palletsprojects.com/p/jinja/"),
-    ("You can modify those links in your config file", "#"),
 )
 
 # Social widget
