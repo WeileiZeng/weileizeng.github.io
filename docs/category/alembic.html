@@ -46,241 +46,6 @@
         
 
             <article>
-                <a href="/belief-propagation.html"><h3 class="article-title">"Belief Propagation"</h3></a>
-<h6 class="subheader" title="2021-01-01T12:00:00+08:00">五 01 一月 2021
-</h6>
-
-
-<h2>- Research</h2>
-<p><em>Belief Propagation</em> is a very efficient decoder for classical codes. Implementation of BP for quantum codes has been attempted for a while, with limited performance so far. Here I describe various forms of it.</p>
-<!-- more -->
-
-<p>See more on <a href="https://windowsontheory.org/2018/10/20/belief-propagation-and-the-stochastic-block-model/">Belief Propagation and the Stochastic Block Model</a></p>
-<p>The Belief Propagation (BP) algorithm can approximate the marginal
-probability of errors, giving the received bits or the syndrome. It is
-designed for factor graph. When the graph is a tree, it gives the exact
-marginal probability. There are several equivalent/approximate versions
-of it, let us start with the classical one.</p>
-<h2>codeword-based</h2>
-<p>BP decoder for classical binary codes:</p>
-<p>A code is defined by a factor graph ( with assumed degree <span class="math">\(d+1\)</span> and)
-with variable nodes <span class="math">\(V=\{c_i\}\)</span> and check nodes <span class="math">\(C=\{c_i\}\)</span>. The message
-from variable to check is
-</p>
-<div class="math">$$u_{v-c}(x) =m(x) = P(y_v|x) \prod_{j=1..d}  M_j(x)  \text {, where }
-\{c_1,...,c_d \} = N(v)\setminus c,~x \in \{0,~1\}$$</div>
-<p> The message from
-check to variable is
-</p>
-<div class="math">$$u_{c-v} = M(x) = \sum_{x_1,...,x_d} \delta( {\bf h}_c {\bf x}^T=0)
-\prod_{j=1}^d m_j(x) \text{, where} \{ v_1,...,v_d \} = N(c)
-\setminus v$$</div>
-<p> The initial condition is <span class="math">\(M_j(x)=1, x \in \{0,1\}\)</span>.</p>
-<p>(To generalize it to nonbinary case, one only need to modify the parity
-check condition from matrix miltiplication to symplectic product.
-Everything else will be extended smoothly)</p>
-<h2>codeword-based, LLR-simplified</h2>
-<p>By rewriting the probabilities and messages in terms of the
-log-likelihood ratio</p>
-<p><span class="math">\(l_i=\log( m_i(0)/m_i(1))\)</span>, <span class="math">\(M_i=\log(
-M_i(0)/M_i(1))\)</span>, one can get the simplified message:</p>
-<div class="math">$$l_i=l_i^{(0)}+\sum_{j=1}^d (L_j)$$</div>
-<div class="math">$$L_i = 2 \tanh^{-1} \prod_{j=1}^d \tanh (l_j/2)$$</div>
-<div class="math">$$l^{(0)}_i=\log (P(x_i=0|y_i)/P(x_i=1)|y_i),~ y_i \in \{0,1\}$$</div>
-<p>When <span class="math">\(y_i= 0 \text{ or } 1\)</span>, <span class="math">\(l_i^{(0)}\)</span> will be flipped.</p>
-<p>In this simplified form, only one message need to be sent per edge,
-instead of two messages for 0 and 1 respectively. Hence, the complexity
-is reduced.</p>
-<h2>syndrome-based</h2>
-<p>In classical case, the received bits was used, instead of the syndrome.
-In quantum case, there are no received bits, but only the syndrome.
-Hence, to get the formula in quantum case, one need to change it to a
-syndrome-based decoder.</p>
-<p>Ref [@mackay2003information chapter 47.2] show that the codeword-based
-BP decoder is equivalent to the following syndrome-based decoder</p>
-<div class="math">$$u_{v-c}(x) =m(x) = P(x) \prod_{j=1..d}  M_j(x)  \text {, where }
-\{c_1,...,c_d \} = N(v)\setminus c$$</div>
-<div class="math">$$u_{c-v} = M(x) = \sum_{x_1,...,x_d} \delta( {\bf h}_c {\bf x}^T={\bf
-s}^T)
-\prod_{j=1}^d m_j(x) \text{, where} \{ v_1,...,v_d \} = N(c)
-\setminus v$$</div>
-<p> The initial condition is still <span class="math">\(M_j(x)=1, x \in \{0,1\}\)</span>.</p>
-<p>The logic is that, the codeword-view calculate <span class="math">\(P(x|y)\)</span> (the most-likely
-input codeword <span class="math">\(x\)</span> given the recieved vector <span class="math">\(y\)</span>) and the syndrome-view
-calculate <span class="math">\(P(e|s)\)</span> (the most-likely error <span class="math">\(e\)</span> given this syndrome <span class="math">\(s\)</span>).
-Here <span class="math">\(x\)</span> should be an valid zero-syndrome input codeword; <span class="math">\(y\)</span> is the
-received vector; and <span class="math">\(e\)</span> is an error vector matching syndrome <span class="math">\(s\)</span>.
-Literally, these two marginal probability are describing the same event,
-thus should lead to the same result. Mathematically, one has to write it
-carefully and show they are isomorphic.</p>
-<h2>syndrome-based, LLR simplified</h2>
-<p>In a similar fashion of simplification, one can write the above
-equations into the log-likelihood-ratio form, then reach the following
-simple formula [@liu2018neural]</p>
-<div class="math">$$l_i=l_i^{(0)}+\sum_{j=1}^d (L_j)$$</div>
-<div class="math">$$L_i = (-1)^{s_i} 2 \tanh^{-1} \prod_{j=1}^d \tanh (l_j/2)$$</div>
-<div class="math">$$l_i^{(0)}=\log (P(x_i=0)/P(x_i=1)) = \text{const}$$</div>
-<p>The posterior log-likelihood ratio can be estimated as
-<span class="math">\(l_i=l_i^{(0)}+\sum_{j=1}^{d+1} (L_j)\)</span></p>
-<p>This syndrome-based BP decoder can be used for quantum code as well. We
-first discuss the case of CSS codes, then the case of GF(4) codes.</p>
-<h2>discussion on quantum case</h2>
-<p>In CSS codes, one has <span class="math">\(GH^T=0\)</span>. Say <span class="math">\(H\)</span> is the parity check matrix, then
-the only difference from a classical code with parity check matrix <span class="math">\(H\)</span>
-is that one need to check the decoded vector is an trivial error or not,
-that is, if it can be eliminated by rows of <span class="math">\(G\)</span> or not. Hence, the CSS
-code can use BP decoder directly with a post check.</p>
-<p>In GF(4) code, the generator matrix <span class="math">\(G=(A|B)\)</span> satisfies <span class="math">\(G \tilde
-G^T=AB^T+BA^T=0\)</span>, where <span class="math">\(\tilde G=(B|A)\)</span>. Here, one can just decode a
-classical code with parity check matrix <span class="math">\(\tilde G\)</span>, then check if it is
-a combination of rows of <span class="math">\(G\)</span>.</p>
-<p>Note that, in both CSS codes and GF(4) codes, the correlation between X
-and Z errors are not considered. One way to consider the correlations is
-as following.</p>
-<p>One can change the generator matrix from </p>
-<div class="math">$$G=(A|B), H=(B|A)$$</div>
-<p> to
-</p>
-<div class="math">$$\tilde G =G \left( \begin{array}{ccc} I&amp;&amp;I\\&amp;I&amp;I \end{array}\right)
-=(A|B|A+B), \tilde H = \left( \begin{array}{ccc} B &amp; A \\
-                                I&amp;I&amp;I \end{array} \right)$$</div>
-<p> The error
-changes from <span class="math">\((e_X|e_Z)\)</span> to <span class="math">\((e_X|e_Z|e_Y)\)</span>, which satisfy
-<span class="math">\((I|I|I)(e_X|e_Z|e_Y)^T=0\)</span>. (Any single error will produce an even
-number of 1s in the vector. This <span class="math">\(e_Y\)</span> is not the Pauli Y error, but
-simply a superposition of X and Z, <span class="math">\(e_Y=e_X+e_Z\)</span> mod 2.) This extra Y
-node contain the information that X and Z errors tend to appear or
-disapear in pair but not alone.</p>
-<p>In this construction, we can just take the new parity check matrix as a
-classical binary code and use the basic BP decoder.</p>
-<h2>variation of BP</h2>
-<h3>Min-Sum</h3>
-<p>Finally, there are some optimization of BP decoder, including normalized
-and offset min-sum decoder [@chen2005improved].
-Ref [@panteleev2019degenerate] says they are always using normalized
-offset min-sum decoder with mormalization factor <span class="math">\(\alpha=0.625\)</span>.</p>
-<p>Here I use <span class="math">\(L^{BP},~L^{MS},~L^{NORM},~L^{OFF}\)</span> to denote the
-check-to-variable messages for BP, min-sum, normalized min-sum, and
-off-set min-sum respectively. The relation on their sign and magnitute
-are</p>
-<div class="math">$$\mathop{\rm sgn}(L^{BP})=\mathop{\rm sgn}(L^{MS})=(-1)^{s_c}\prod_i^d \mathop{\rm sgn}(l_j)$$</div>
-<div class="math">$$|L_i^{BP}| =  2 \tanh^{-1} \prod_{j=1}^d \tanh (|l_j|/2)$$</div>
-<div class="math">$$|L_i^{MS}| = \min_i^d |l_j|$$</div>
-<div class="math">$$|L_i^{NORM}| = \min_i^d |l_j|/\alpha,~\alpha&gt;1$$</div>
-<div class="math">$$|L_i^{OFF}| = \max( \min_i^d |l_j| - \beta, 0),~\beta &gt;0$$</div>
-<h3>layered scheduling for updating rule</h3>
-<p>Ref [@panteleev2019degenerate] claim they used layered scheduling, which
-helped to eliminate the oscillating errors caused by the trapping sets.
-The criteria for how to choose the schedule is unclear for me yet.</p>
-<h3>enhanced feedback</h3>
-<p>Ref [@wang2012enhanced] developed an optimization called Enhanced
-Feedback iterative BP decoder. In the second round of BP decoding, he
-locate the frustrated checks and some common qubits connected with them,
-then use the output probability to replace the input probability for
-those qubits. This approach is very similar to what I tried ( in the
-codeword-based LLR-simplified BP decoder for toric codes). The
-difference is that, I simply use the output probability (LLR vector) to
-replace the input probability for all qubits. I saw it fix all double
-errors on large-size (about 35x35) toric codes, but only tiny
-improvement in the numerics of small size (5, 7, 9, 11, 13). I am not
-sure about the reason on small size. there may be a bug in the program
-as well.</p>
-<h3>Reference</h3>
-<div id="refs" class="references">
-<div id="ref-chen2005improved">
-<p>Chen, Jinghu, R Michael Tanner, Christopher Jones, and Yan Li. 2005. “Improved Min-Sum Decoding Algorithms for Irregular Ldpc Codes.” In <em>Proceedings. International Symposium on Information Theory, 2005. ISIT 2005.</em>, 449–53. IEEE.</p>
-</div>
-<div id="ref-liu2018neural">
-<p>Liu, Ye-Hua, and David Poulin. 2018. “Neural Belief-Propagation Decoders for Quantum Error-Correcting Codes.” <em>arXiv Preprint arXiv:1811.07835</em>.</p>
-</div>
-<div id="ref-mackay2003information">
-<p>MacKay, David JC, and David JC Mac Kay. 2003. <em>Information Theory, Inference and Learning Algorithms</em>. Cambridge university press.</p>
-</div>
-<div id="ref-panteleev2019degenerate">
-<p>Panteleev, Pavel, and Gleb Kalachev. 2019. “Degenerate Quantum Ldpc Codes with Good Finite Length Performance.” <em>arXiv Preprint arXiv:1904.02703</em>.</p>
-</div>
-<div id="ref-wang2012enhanced">
-<p>Wang, Yun-Jiang, Barry C Sanders, Bao-Ming Bai, and Xin-Mei Wang. 2012. “Enhanced Feedback Iterative Decoding of Sparse Quantum Codes.” <em>IEEE Transactions on Information Theory</em> 58 (2). IEEE: 1231–41.</p>
-</div>
-</div>
-
-<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
-    var align = "center",
-        indent = "0em",
-        linebreak = "false";
-
-    if (false) {
-        align = (screen.width < 768) ? "left" : align;
-        indent = (screen.width < 768) ? "0em" : indent;
-        linebreak = (screen.width < 768) ? 'true' : linebreak;
-    }
-
-    var mathjaxscript = document.createElement('script');
-    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
-    mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
-
-    var configscript = document.createElement('script');
-    configscript.type = 'text/x-mathjax-config';
-    configscript[(window.opera ? "innerHTML" : "text")] =
-        "MathJax.Hub.Config({" +
-        "    config: ['MMLorHTML.js']," +
-        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
-        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
-        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
-        "    displayAlign: '"+ align +"'," +
-        "    displayIndent: '"+ indent +"'," +
-        "    showMathMenu: true," +
-        "    messageStyle: 'normal'," +
-        "    tex2jax: { " +
-        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
-        "        displayMath: [ ['$$','$$'] ]," +
-        "        processEscapes: true," +
-        "        preview: 'TeX'," +
-        "    }, " +
-        "    'HTML-CSS': { " +
-        "        availableFonts: ['STIX', 'TeX']," +
-        "        preferredFont: 'STIX'," +
-        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
-        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
-        "    }, " +
-        "}); " +
-        "if ('default' !== 'default') {" +
-            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-        "}";
-
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
-}
-</script><p class="subheader">Category: <a href="/category/alembic.html">alembic</a>
-
-</p>
-
-
-
-            </article>
-
-
-                <hr  class="gradient"/>
-
-
-        
-
-
-            <article>
                 <a href="/coronavirus-in-china-guan-zhuang-bing-du-dong-tai.html"><h3 class="article-title">"Coronavirus in China 冠状病毒动态"</h3></a>
 <h6 class="subheader" title="2021-01-01T12:00:00+08:00">五 01 一月 2021
 </h6>
@@ -299,15 +64,23 @@ as well.</p>
 <a href="https://cn.nytimes.com/morning-brief/20200128/wuhan-coronavirus-china/?action=click&amp;module=RelatedLinks&amp;pgtype=Article">中文版</a>
 <a href="https://3g.dxy.cn/newh5/view/pneumonia?scene=2&amp;clicktime=1579579384&amp;enterid=1579579384&amp;from=timeline&amp;isappinstalled=0">丁香医生-全国动态</a>
 <a href="https://gisanddata.maps.arcgis.com/apps/opsdashboard/index.html#/bda7594740fd40299423467b48e9ecf6">worldwide toll</a></p>
-<p>Navigation pages …</p><p class="subheader">Category: <a href="/category/alembic.html">alembic</a>
+<p>Navigation pages of related resources
+<a href="http://nav.werty.cn/">2019-nCoV 疫情信息导航</a></p>
+<p>Want to help? See what the open source community is doing.
+<a href="https://weileizeng.github.io/OpenSourceWuhan/">OpenSourceWuhan</a></p>
+<p><a href="https://github.com/coddec/2020-new-coronavirus/blob/master/README.md">更多信息网站</a>
+<a href="/news/2020/01/30/shaoyang/">邵阳动态</a></p>
+<p>How will the coronavirus affect the economy? Here is a <a href="https://www.youtube.com/watch?v=mXzK7YRpd08">prediction</a> in Chinese.</p><p class="subheader">Category: <a href="/category/alembic.html">alembic</a>
 
 </p>
 
 
 
-                <a class="button radius secondary small right" href="/coronavirus-in-china-guan-zhuang-bing-du-dong-tai.html">Read More</a>
-                <hr  class="gradient"/>
             </article>
+
+
+                <hr  class="gradient"/>
+
 
         
 
@@ -517,6 +290,37 @@ excerpt: |
                 <hr  class="gradient"/>
             </article>
 
+        
+
+
+            <article>
+                <a href="/reading-list.html"><h3 class="article-title">"Reading List"</h3></a>
+<h6 class="subheader" title="2021-01-01T12:00:00+08:00">五 01 一月 2021
+</h6>
+
+
+<ul>
+<li>Study
+published: true
+feature_test: |
+  More to learn
+excerpt: |
+  My reading list</li>
+</ul>
+<hr>
+<p>My reading list</p>
+<ul>
+<li>[ ] <em>The Art of Computer Programming</em> by  Donald Knuth </li>
+</ul><p class="subheader">Category: <a href="/category/alembic.html">alembic</a>
+
+</p>
+
+
+
+                <a class="button radius secondary small right" href="/reading-list.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
             <!-- /#posts-list -->
 <div class="pagination-centered">
 <h6 class="subheader">Page 1 of 3</h6>
@@ -560,9 +364,9 @@ excerpt: |
 		
         <h5 class="sidebar-title">Social</h5>
         <ul class="side-nav">
-            <li><a href="https://github.com/WeileiZeng/weileizeng.github.io/settings/pages">GitHub</a></li>
-            <li><a href="#">You can add links in your config file</a></li>
-            <li><a href="#">Another social link</a></li>
+            <li><a href="https://github.com/WeileiZeng">GitHub</a></li>
+            <li><a href="#">WeChat</a></li>
+            <li><a href="#">Zhihu</a></li>
         </ul>
 
     </aside> <!-- End Sidebar -->
