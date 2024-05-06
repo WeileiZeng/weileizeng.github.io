@@ -6,13 +6,13 @@ project structure
 ├── Makefile
 ├── README.md
 ├── backup
-├── docs		#target folder, root folder for GitHub Pages
-├── env		#python environment, ignored by git
+├── docs  	          #target folder, root folder for GitHub Pages
+├── env               #python environment, ignored by git
 ├── requirements.txt	#python package dependancy
-├── web		#source file
-│  - Conten 		#blog filesent
-│  - Output		#static files
-└── zurb-F5-basic	#pelican theme
+├── web		            #source file
+│  - Content 		      #blog filesent
+│  - Output		        #static files
+└── zurb-F5-basic	    #pelican theme
 ```
 
 # tools
