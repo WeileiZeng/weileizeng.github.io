@@ -28,7 +28,7 @@ source env/bin/activate
 pip install pelican[markdown] pelican-render-math
 #see also requirements.txt for freeze package versions with Python 3.12.3 tested on Mac OS
 ```
-initilize the repo
+initialize the repo
 ```
 -> % pelican-quickstart
 Welcome to pelican-quickstart v4.9.1.
@@ -57,6 +57,20 @@ needed by Pelican.
 > Is this your personal page (username.github.io)? (y/N) y
 Done. Your new project is available at /Users/weileizeng/Documents/GitHub/min-web-template/web
 ```
+
+
+## Q&A
+*How to add blog*
+
+- add a new file in `web/content`. Any subfolder will be seen as a catergory. One can start by duplicating the [template.md](web/content/template.md)
+*How to add statics files*
+
+- There are two folders for static files: `content/images` and `output/static`
+*How to build and publish*
+
+- First develop  it locally, follow command in [`web/Makefile`](web/Makefile)
+- When things get ready, update the built page into [`docs`](docs), following cmd in [`Makefile`](Makefile). Then push the changes to GitHub. One can verify status by visiting the online page, or check out [GitHub Actions](https://github.com/WeileiZeng/weileizeng.github.io/actions).
+
 
 # TODO:
 - show the page using github pages
