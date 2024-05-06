@@ -3,6 +3,13 @@ Author:  Weilei Zeng
 
 Dated: May 4th, 2024
 
+
+Phylosophy of the website project:
+To share experience and knowledge everywhere. In order to make the project neat and clean, keep those questions in mind.
+
+- Is the website easy to visit anywhere on earth, smooth and free?
+- Is the website easy to build, that even after 10 years, one can get it up in seconds?
+
 project structure
 ```
 Makefile            #
