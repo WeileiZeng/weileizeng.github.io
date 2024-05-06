@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>"Quantum Computer Architecture"</title>
+
+    <link rel="stylesheet" href="/theme/css/normalize.css" />
+    <link rel="stylesheet" href="/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="/theme/css/style.css" />
+    <link rel="stylesheet" href="/theme/css/pygments.css" />	
+    <script src="/theme/js/modernizr.js"></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="">Weilei Zeng</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+<article>
+    <header>
+        <h3 class="article-title"><a href="/quantum-computer-architecture.html" rel="bookmark"
+        title="Permalink to "Quantum Computer Architecture"">"Quantum Computer Architecture"</a></h3>
+    </header>
+
+<h6 class="subheader" title="2021-01-01T12:00:00+08:00">五 01 一月 2021
+</h6>
+
+
+    <ul>
+<li>Research
+published: true
+excerpt: |
+  Rules to build a quantum computer</li>
+</ul>
+<hr>
+<p>In the past decades, an enormous amount of capital poured into the field of quantum computing, both from the government and the market. Though people doubt the reality and risk, it is true that the development of quantum computing has been boosted and evolved into a new shape. The research is no longer limited to diverse topics from various theoretical and experiment group, but people are also trying to put things together for a full-stack quantum computer architecture. In this article, I will introduce its structure and the landscape of industrial implementation.</p>
+<p>The architecture of a quantum computer has been proposed in multiple places. Many companies, whose ambition is to build a universal fault-tolerant quantum computer, have published their blueprint or roadmap according to the architecture structure.</p>
+<p>In (Meter and Horsman 2013)[1], the architecture is defined as</p>
+<p>{% include figure.html image="/assets/fig/architecture-meter.png" caption="kodi" %}</p>
+<p>In (Fu et al 2016) [2], it is depicted as</p>
+<p>{% include figure.html image="/assets/fig/architecture-fu.png" caption="kodi" %}</p>
+<p>They tried to make it compatible and complete for most hardware platforms. Those structures are not necessarily static. They evolve as the development of each part. For today's discussion, I simplify it as the following.</p>
+<ul>
+<li>Qubit Technologies</li>
+<li>qubit storage, gate operations, qubit interconnections, measurement</li>
+<li>Quantum error correction</li>
+<li>use physical qubits to encode logical qubits</li>
+<li>allow universal and fault-tolerant logical operations</li>
+<li>Quantum programming</li>
+<li>From human-readable language to machine-executable commands</li>
+<li>Quantum algorithm</li>
+<li>Quantum complexity theory</li>
+</ul>
+<p>Many companies have the ambition to build a universal fault-tolerant quantum computer. Some of them have posted their architecture blueprint.</p>
+<table>
+<thead>
+<tr>
+<th>Team</th>
+<th><a href="https://xanadu.ai/">Xanadu</a></th>
+<th><a href="https://aws.amazon.com/braket/">Amazon Braket</a></th>
+<th><a href="https://universalquantum.com/">Universal Quantum</a></th>
+<th><a href="https://psiquantum.com/">PsiQuantum</a></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Location</td>
+<td>Toronto</td>
+<td>Los Angeles</td>
+<td>UK</td>
+<td>San Francisco</td>
+</tr>
+<tr>
+<td>Blueprint</td>
+<td><a href="https://arxiv.org/abs/2010.02905">arxiv 2010.02905</a> [3]</td>
+<td><a href="https://arxiv.org/pdf/2012.04108.pdf">arxiv 2012.04108</a> [4]</td>
+<td><a href="https://arxiv.org/pdf/1508.00420.pdf">arxiv 1508.00420</a> [5]</td>
+<td><a href="https://spiral.imperial.ac.uk/handle/10044/1/43936">thesis</a> [6]</td>
+</tr>
+<tr>
+<td>Qubit tech</td>
+<td>photonic, GBS</td>
+<td>acoustic resonators coupled to superconducting circuits</td>
+<td>trapped ion</td>
+<td>linear optics</td>
+</tr>
+<tr>
+<td>QEC</td>
+<td>surface-GKP</td>
+<td>concatenated cat code</td>
+<td>surface code</td>
+<td>topological code</td>
+</tr>
+<tr>
+<td>Non-Clifford elements</td>
+<td>PNR</td>
+<td>Toffoli magic state distillation</td>
+<td>T-type magic state</td>
+<td>?</td>
+</tr>
+<tr>
+<td>logical operation</td>
+<td>lattice surgery</td>
+<td>lattice surgery</td>
+<td>?</td>
+<td>?</td>
+</tr>
+</tbody>
+</table>
+<p>note: 
+- A Clifford circuit can be simulated efficiently by a classical computer, hence provide no quantum advantage. It is also easy to implement in a quantum system. Non-Clifford elements are required for universal quantum computation to achieve any quantum advantage.
+- GKP: Gottesman-Kitaev-Preskill codes
+- PNR: photon number resolver
+- Concatenated cat codes are two-layer structure, with cat code as the inner code and another qubit code as the outer code. In its paper, repetition code and surface code are used.
+- ? means I am not sure by a brief reading. </p>
+<p>The main contribution of those blueprints is to put different components together so that people can see the full picture of a quantum computer. Those are still in the early stages. Each part has a huge space for improvement. It is also nontrial to optimize the connection between different layers.</p>
+<p>In fact, IBM[7], IonQ[8], D-wave, and others have published roadmaps for their hardware. But they haven't discussed quantum error correction and fault tolerance yet, hence not included in today's comparison. For statistics on hardware, there is a paid version on <a href="https://quantumcomputingreport.com/">https://quantumcomputingreport.com/</a></p>
+<p><strong>References</strong></p>
+<p>[1] Van Meter, R., &amp; Horsman, C. (2013). A blueprint for building a quantum computer. Communications of the ACM, 56(10), 84-93.</p>
+<p>[2] Fu, X., Riesebos, L., Lao, L., Almudever, C. G., Sebastiano, F., Versluis, R., ... &amp; Bertels, K. (2016, May). A heterogeneous quantum computer architecture. In Proceedings of the ACM International Conference on Computing Frontiers (pp. 323-330).</p>
+<p><strong>Blueprints</strong></p>
+<p>[3] Bourassa, J. E., Alexander, R. N., Vasmer, M., Patil, A., Tzitrin, I., Matsuura, T., ... &amp; Dhand, I. (2020). Blueprint for a scalable photonic fault-tolerant quantum computer. arXiv preprint arXiv:2010.02905.</p>
+<p>[4] Chamberland, C., Noh, K., Arrangoiz-Arriola, P., Campbell, E. T., Hann, C. T., Iverson, J., ... &amp; Brandão, F. G. (2020). Building a fault-tolerant quantum computer using concatenated cat codes. arXiv preprint arXiv:2012.04108.</p>
+<p>[5] Lekitsch, B., Weidt, S., Fowler, A. G., Mølmer, K., Devitt, S. J., Wunderlich, C., &amp; Hensinger, W. K. (2017). Blueprint for a microwave trapped ion quantum computer. Science Advances, 3(2), e1601540.</p>
+<p>[6] Gimeno-Segovia, M. (2015). Towards practical linear optical quantum computing (Doctoral dissertation, Imperial College London).</p>
+<p><strong>players</strong></p>
+<p>Xanadu <a href="http://xanadu.ai/">http://xanadu.ai/</a></p>
+<p>Amazon Braket <a href="https://aws.amazon.com/braket/">https://aws.amazon.com/braket/</a></p>
+<p>Universal Quantum <a href="https://universalquantum.com/">https://universalquantum.com/</a></p>
+<p>PsiQuantum <a href="https://psiquantum.com/">https://psiquantum.com/</a></p>
+<p><strong>Hardware roadmaps</strong></p>
+<p>[7] IBM hardware roadmap
+<a href="https://www.ibm.com/blogs/research/2020/09/ibm-quantum-roadmap/">https://www.ibm.com/blogs/research/2020/09/ibm-quantum-roadmap/</a></p>
+<p>[8] IonQ’s roadmap: Quantum machine learning by 2023, broad quantum advantage by 2025
+<a href="https://venturebeat.com/2020/12/09/ionq-roadmap-quantum-machine-learning-2023-broad-quantum-advantage-2025/">https://venturebeat.com/2020/12/09/ionq-roadmap-quantum-machine-learning-2023-broad-quantum-advantage-2025/</a></p>
+<p class="subheader">Category: <a href="/category/alembic.html">alembic</a>
+
+</p>
+
+
+
+
+</article>
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="/archives.html">Archives</a>
+            <li><a href="/tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="/category/about.html">about</a></li>
+            <li><a href="/category/alembic.html">alembic</a></li>
+            <li><a href="/category/blog.html">blog</a></li>
+            <li><a href="/category/news.html">news</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="http://localhost:8000">localhost:8000</a></li>
+            <li><a href="https://weileizeng.github.io/">weileizeng.github.io</a></li>
+            <li><a href="https://github.com/WeileiZeng/weileizeng.github.io">GitHub</a></li>
+            <li><a href="https://getpelican.com/">Pelican</a></li>
+            <li><a href="https://www.python.org/">Python.org</a></li>
+            <li><a href="https://palletsprojects.com/p/jinja/">Jinja2</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/WeileiZeng/weileizeng.github.io/settings/pages">GitHub</a></li>
+            <li><a href="#">You can add links in your config file</a></li>
+            <li><a href="#">Another social link</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>Weilei Zeng by ZWL</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>

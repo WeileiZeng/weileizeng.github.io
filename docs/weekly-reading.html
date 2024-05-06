@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>"Weekly Reading"</title>
+
+    <link rel="stylesheet" href="/theme/css/normalize.css" />
+    <link rel="stylesheet" href="/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="/theme/css/style.css" />
+    <link rel="stylesheet" href="/theme/css/pygments.css" />	
+    <script src="/theme/js/modernizr.js"></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="">Weilei Zeng</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+<article>
+    <header>
+        <h3 class="article-title"><a href="/weekly-reading.html" rel="bookmark"
+        title="Permalink to "Weekly Reading"">"Weekly Reading"</a></h3>
+    </header>
+
+<h6 class="subheader" title="2021-01-01T12:00:00+08:00">五 01 一月 2021
+</h6>
+
+
+    <ul>
+<li>Research
+published: true</li>
+</ul>
+<hr>
+<p>Notes on readings.</p>
+<!-- more -->
+
+<h5>Feb 22, 2020</h5>
+<ul>
+<li>Correcting coherent errors with surface codes {% cite bravyi2018correcting %} <a href="https://www.nature.com/articles/s41534-018-0106-y">nature</a></li>
+</ul>
+<p>So far the error models I use, either depolarizing channels or circuit error models, with or without measurement error, are stochastic models which assume almost all qubits are independent. In realistic situations, there are also coherent error. For example, a misalignment of the pulse frequency will result in small rotation errors everywhere. </p>
+<h5>Apr 16, 2020</h5>
+<ul>
+<li>GRAND (Guessing Random Additive Noised Decoding) {% cite duffy2019capacity %}</li>
+<li>Given Channel output y, ititialize a set of most likely error with descending probabilities.</li>
+<li>
+<p>Run through the set until finding an error matches the syndrome. That would be the decoding result</p>
+</li>
+<li>
+<p>Refined Belief Propagation Decoding of Sparse-Graph Quantum Codes {% cite kuo2020refined %}</p>
+</li>
+<li>define a new scheme for single-message-passing BP decoding for quantum codes. The scheme cannot incorporate correlation between X and Z error. It is also unknown whether it has same complexity as the binary version of BP decoder of GF(4) codes.</li>
+<li>Give a clear description of layered/serial scheduling in BP, which improve both rate and speed of convergence.</li>
+<li>More thinking: single message passing is possible as long as syndrome is binary, with the classification of two categories for each syndrome result</li>
+</ul>
+<h5>References</h5>
+<p>{% bibliography --cited %}</p>
+<p class="subheader">Category: <a href="/category/alembic.html">alembic</a>
+
+</p>
+
+
+
+
+</article>
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="/archives.html">Archives</a>
+            <li><a href="/tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="/category/about.html">about</a></li>
+            <li><a href="/category/alembic.html">alembic</a></li>
+            <li><a href="/category/blog.html">blog</a></li>
+            <li><a href="/category/news.html">news</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="http://localhost:8000">localhost:8000</a></li>
+            <li><a href="https://weileizeng.github.io/">weileizeng.github.io</a></li>
+            <li><a href="https://github.com/WeileiZeng/weileizeng.github.io">GitHub</a></li>
+            <li><a href="https://getpelican.com/">Pelican</a></li>
+            <li><a href="https://www.python.org/">Python.org</a></li>
+            <li><a href="https://palletsprojects.com/p/jinja/">Jinja2</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/WeileiZeng/weileizeng.github.io/settings/pages">GitHub</a></li>
+            <li><a href="#">You can add links in your config file</a></li>
+            <li><a href="#">Another social link</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>Weilei Zeng by ZWL</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>

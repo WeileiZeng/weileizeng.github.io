@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>"Software Update"</title>
+
+    <link rel="stylesheet" href="/theme/css/normalize.css" />
+    <link rel="stylesheet" href="/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="/theme/css/style.css" />
+    <link rel="stylesheet" href="/theme/css/pygments.css" />	
+    <script src="/theme/js/modernizr.js"></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="">Weilei Zeng</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+<article>
+    <header>
+        <h3 class="article-title"><a href="/software-update.html" rel="bookmark"
+        title="Permalink to "Software Update"">"Software Update"</a></h3>
+    </header>
+
+<h6 class="subheader" title="2021-01-01T12:00:00+08:00">五 01 一月 2021
+</h6>
+
+
+    <ul>
+<li>Study
+published: true
+use-math: true
+feature_image: "/assets/fig/dockerhub.png"</li>
+</ul>
+<h1>original link of image: "https://zdnet2.cbsistatic.com/hub/i/r/2019/04/27/d7311871-381a-4928-a1d9-04c69c6ea4de/resize/1200x900/99ef8a9fdb15356e4de4dcfe12803fa3/dockerhub.png"</h1>
+<hr>
+<p>I got sometime to dig into some softwares, which has improved my productivity a lot. Those include
+  Docker, jekyll-scholar, mathjax, github</p>
+<!-- more -->
+
+<h2>Docker</h2>
+<p><strong>use any system or software within one line</strong></p>
+<p>In order to endorse <a href="https://www.docker.com/">Docker</a>, I will start with the following general discussion. How do you get a linux environment on Windows laptop/PC?</p>
+<ul>
+<li>Connect to a linux server</li>
+<li>Install a linux system on another disk other than <code>C:\</code>, so called <em>double system</em>.</li>
+<li>Install a linux virtual box/machine</li>
+<li>use Windows Subsystem for Linux (WSL)</li>
+<li>use Cygwin</li>
+<li>use MinGW</li>
+<li>use Docker</li>
+<li>...</li>
+</ul>
+<p>If you have a linux server, that is very nice and that is what we usually do for computing on research. Here I discuss the cases where we want to use some application or bash on linux or just want a linux system to play with.</p>
+<p>Since college, I saw many people install double system to use linux. This works just fine and you have a whole linux system. The inconvenience comes when you want to use a Windows app, you have to reboot your system. The virtual box is an improvement of this option, where you get a whole linux system with GUI, within Windows. This makes it easier to access apps on both Windows and Linux, and now most laptops have the hardware capability to do so.</p>
+<p>{% include figure.html image="/assets/fig/wsl-cygwin-mingw.png" %}</p>
+<p>MinGW, Cygwin and WSL are similar options. MinGW only provides a minimal set of linux tools like bash. Cygwin is more powerful and emulates many of the small details of Linux. WSL is a recent feature provided by Microsoft itself. It is a real Linux kernel built on a lightweight VM. Unlike VM, it doesn't run some daemon tasks itself, but can connect to the deamon runing on windows. For example, if one wants to use Docker on WSL, one need to install Docker Desktop on windows, and then call docker deamon in WSL. WSL is powerful but still in development. One may encounter all kinds of problems when using it just like a linux system. For me, it is just a convenient way to run linux command on Windows. For more detail, see <a href="https://ericzhng.github.io/eric-blogs/2019/07/25/comparison-cygwin-mingw-wsl/">Compare the difference between Cygwin, MinGW and WSL</a></p>
+<p>Finally, I am going to endorse Docker. Docker using this idea of container, which works as a software, but has all the function of a virtual machine. It uses <code>Dockerfile</code> to define a container. That is similar to <code>MakeFile</code>, where you define a sequence of commands and give it a name, then just call that name to run all the commands in one line. The difference in Dockerfile is that it start from an operating system (OS), and then run commands in that OS. That OS could be any version of linux or windows. It takes one line to build an image from this Dockerfile. Image is another major feature of docker, which is an OS with all the commands in the Dockerfile already been runned. Those commands are the same as the usual commands in the system, which are mostly used to install softwares and process data files. One only need to build this image once, and next time, one can start from those images immediately.</p>
+<p>In short, docker provide a way to run any virtual environment within one line. It has a community support of all kinds of environment on DockerHub, which help you to define your own environment very easily. I personally use it to define <a href="https://hub.docker.com/repository/docker/weileizeng/itpp-full">a working environment on ubuntu</a>, which has installed all the packages I use in my research. This way others can run my code very easily, instead of setting up the environment first. The latter, usually prevents anyone else to run my code in practice. In the meantime, just for entertainment, I use it to deploy a home media center (<a href="https://www.plex.tv/">plex</a>) and cloud file system (<a href="https://nextcloud.com/">nextcloud</a>)</p>
+<h2>GitHub</h2>
+<p><a href="https://git-scm.com/">Git</a> is a version control software and <a href="https://github.com/">GitHub</a> is an online host of Git. With Git, one never worry about forgetting things or breaking your code. Now I use it everyday, for codes as well as any other writing projects. Some people even use GitHub for collaboratin on writing a paper. That works well too, though ShareLatex might be a better option.</p>
+<h2>jekyll-scholar &amp; mathjax</h2>
+<p>How do you write scientific stuff on your blog? One option is not to do it, as many people donot want to read equations in a blog. But if you insist to, <a href="https://github.com/inukshuk/jekyll-scholar">jekyll-scholar</a> and <a href="https://www.mathjax.org/">mathjax</a> make everything easy, as if you are writing in latex. These two tools meet all the needs to write in markdown. If you have some previous writing in latex and now want to post it in a blog. Other than give a link to the pdf, one can use <code>pandoc</code> to convert the <code>.tex</code> file into <code>.md</code> file first. Probably fix one or two bugs then it should be okay.</p>
+<p class="subheader">Category: <a href="/category/alembic.html">alembic</a>
+
+</p>
+
+
+
+
+</article>
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="/archives.html">Archives</a>
+            <li><a href="/tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="/category/about.html">about</a></li>
+            <li><a href="/category/alembic.html">alembic</a></li>
+            <li><a href="/category/blog.html">blog</a></li>
+            <li><a href="/category/news.html">news</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="http://localhost:8000">localhost:8000</a></li>
+            <li><a href="https://weileizeng.github.io/">weileizeng.github.io</a></li>
+            <li><a href="https://github.com/WeileiZeng/weileizeng.github.io">GitHub</a></li>
+            <li><a href="https://getpelican.com/">Pelican</a></li>
+            <li><a href="https://www.python.org/">Python.org</a></li>
+            <li><a href="https://palletsprojects.com/p/jinja/">Jinja2</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/WeileiZeng/weileizeng.github.io/settings/pages">GitHub</a></li>
+            <li><a href="#">You can add links in your config file</a></li>
+            <li><a href="#">Another social link</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>Weilei Zeng by ZWL</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>

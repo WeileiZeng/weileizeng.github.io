@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>"Raspberry Pi"</title>
+
+    <link rel="stylesheet" href="/theme/css/normalize.css" />
+    <link rel="stylesheet" href="/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="/theme/css/style.css" />
+    <link rel="stylesheet" href="/theme/css/pygments.css" />	
+    <script src="/theme/js/modernizr.js"></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="">Weilei Zeng</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+<article>
+    <header>
+        <h3 class="article-title"><a href="/raspberry-pi.html" rel="bookmark"
+        title="Permalink to "Raspberry Pi"">"Raspberry Pi"</a></h3>
+    </header>
+
+<h6 class="subheader" title="2021-01-01T12:00:00+08:00">五 01 一月 2021
+</h6>
+
+
+    <h2>A home server it is.</h2>
+<p>Recently I got myself a raspberry Pi as a 'quarantine gift'. It is my first experience with chips or boards. It is a small kid with all the functions of a linux machine. I do encounter some difficulties like its poor audio with <code>3.5 mm Jack</code> output and have to figure out something else to get around it. But over all, I enjoy exploring all of its functions.</p>
+<p>What I have built on it include a website server, syncronized cloud storage, NAS, media center, server monitor, etc.
+I listed all those entertainments and some tools I used in the homepage of the website.</p>
+<p>{% include figure.html image="/assets/fig/raspberry-pi/web.jpeg" caption="home page of the website hosted on the raspberry pi" %}</p>
+<h2>Media Center</h2>
+<h3><a href="https://jellyfin.org/">jellyfin</a></h3>
+<p>jellyfin is a media server. I used it to manage libaries for musics, movies and MVs, and stream to the home network.</p>
+<h3><a href="https://www.plex.tv/">plex</a></h3>
+<p>plex is something similar to jellyfin. I don't know which one is better so just let both running.</p>
+<p><a href="https://linuxize.com/post/how-to-install-plex-media-server-on-raspberry-pi/">installation</a></p>
+<h3><a href="https://kodi.tv/">kodi</a></h3>
+<p>kodi is a media player. Both jellyfin and plex has their own web interface for online streaming. The streaming works in two ways, either transcoding in the server or on the player. Becuase raspberry is actually very weak on transcoding video, the latter just don't work. Since some video format has to be transcoded before playing, I need to ensure the transcoding happens on the player side. Here Kodi fulfill the needs. Kodi is a home theatre player, with plugins to connect to jellyfin and plex seamlessly. In this way, the playing add little over head to the raspberry Pi and is very smooth.</p>
+<p>{% include figure.html image="/assets/fig/raspberry-pi/jellyfin.jpeg" caption="jellyfin" %}</p>
+<p>{% include figure.html image="/assets/fig/raspberry-pi/kodi.png" caption="kodi" %}</p>
+<p>{% include figure.html image="/assets/fig/raspberry-pi/bt.jpeg" caption="bt - server monitor" %}</p>
+<h2>NAS storage - <a href="https://www.samba.org/">samba</a></h2>
+<p>samba uses the <code>smb</code> protocal to share files. All machines in Windows, Mac and Linux can connect to it. For now I just <a href="https://blog.alexellis.io/attach-usb-storage/">add an old 500G hard drive</a> for it. It is mainly for media files.</p>
+<h2>Bit Torrent - <a href="https://transmissionbt.com/">Transmission</a></h2>
+<p>It is a bit illegal but I am still using bit torrent service for high quality movies. The service comes from my undergraduate school, which is one among the few still avaliable in China. Many of its user are all over the world, so the speed is quite good in US as well.</p>
+<p>A 24/7 bt client would be very helpful for upload/doanload ratio. I haven't set up port forwarding yet, cause I don't have access to the route yet. Not sure if the uploading is working. Lets see...</p>
+<h2>syncronized storage - <a href="https://nextcloud.com/">NextCloud</a></h2>
+<p>samba provide huge storage on the server. But in order to synchronize your folders in many machine and let you work offline sometimes, one need service like dropbox or google drive. Google drive has huge space but some times is slow in real-time sync. Dropbox only give 2G space for free. NextCloud solve all these for you. It is real-time and one can use upto all the space you have in the server.</p>
+<p>It is quite annoying to set up next cloud on your own. Luckily they have provided a docker image. That took one minute to set up.</p>
+<h2>Monitoring tools</h2>
+<h3><a href="https://www.bt.cn/">bt</a></h3>
+<p>bt is very powerful on monitoring a server. It also let you install many sevices by one click. I used it to
+- monitor server usage ( cpu, internet, storage ...)
+- install LAMP for web hosting
+- monitor ports. It works like a firewall and one need to manually allow ports. This is annoying but it is a good way to keep a record of those ports I am using.</p>
+<h3><a href="https://www.realvnc.com/en/">VNC</a></h3>
+<p>The virtual desktop can be viewer from any other machine, including my 7 years old android phone.</p>
+<p><a href="https://help.realvnc.com/hc/en-us/articles/360002249917-VNC-Connect-and-Raspberry-Pi#setting-up-your-raspberry-pi-0-0">installation</a></p>
+<h3>html webpage for download and logfile</h3>
+<p>I setup an html page for logfile. It prints a particular log file on the web and refreshes every 2 seconds. That is a quick way to monitoring a job without log into the machine.</p>
+<p>I also set up another page for downloading files. Some times I need to find some apk for android apps. It is easier to download in my mac and get it from the web on my phones. Sounds more complicated, but it is simple when the flow has been set automatically. In such way I get rid of those Ads in those apk downloading website.</p>
+<h2>Tips - Other thing I learned along the way</h2>
+<h3>zsh and <a href="https://ohmyz.sh/">oh-my-zsh</a></h3>
+<p>those are just a cool replacement for bash</p>
+<h3>use softlink to manage configuration files.</h3>
+<p>Github is quite useful for my projects, and help me to maintain only one version in multiple machines. But how about the configuration files? Can you synchronized them? How?</p>
+<p>I wasn't able to do it, cause I don't know where to put the git repo? Most configuration file are in the home directory with a <code>.</code> prefix. It is definitely too big to put a repo in my home direcory....and dot files are hidden and are ignored by git...</p>
+<p>Any way, now I figured out how to do it. I just create a repo in my normal directory like <code>~/Documents/GitHub/some-config/</code>. I remove the prefix, so <code>.bash_aliases</code> would be named as <code>bash_aliases</code>. Then I create a soft link <code>~/.bash_aliases</code>, which points to the file in the repo and replace the original file with same name. In such way, I can easily maintain those configuration file over multiple machines. And the files are not hidden by default.</p>
+<p class="subheader">Category: <a href="/category/alembic.html">alembic</a>
+
+</p>
+
+
+
+
+</article>
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="/archives.html">Archives</a>
+            <li><a href="/tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="/category/about.html">about</a></li>
+            <li><a href="/category/alembic.html">alembic</a></li>
+            <li><a href="/category/blog.html">blog</a></li>
+            <li><a href="/category/news.html">news</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="http://localhost:8000">localhost:8000</a></li>
+            <li><a href="https://weileizeng.github.io/">weileizeng.github.io</a></li>
+            <li><a href="https://github.com/WeileiZeng/weileizeng.github.io">GitHub</a></li>
+            <li><a href="https://getpelican.com/">Pelican</a></li>
+            <li><a href="https://www.python.org/">Python.org</a></li>
+            <li><a href="https://palletsprojects.com/p/jinja/">Jinja2</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/WeileiZeng/weileizeng.github.io/settings/pages">GitHub</a></li>
+            <li><a href="#">You can add links in your config file</a></li>
+            <li><a href="#">Another social link</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>Weilei Zeng by ZWL</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
+</html>
