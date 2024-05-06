@@ -23,3 +23,9 @@ def main():
 
 Basic Math $x$
 $$f(x) = \sum_i x^i$$
+
+*Picture*
+
+~[img]()
+
+Links
