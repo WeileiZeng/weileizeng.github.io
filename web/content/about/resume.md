@@ -5,7 +5,7 @@ excerpt: "Resume of Weilei Zeng"
 tags:resume, Weilei Zeng
 ---
 
-Updated on 04/11/2021. [PDF version](/zwl_assets/weilei-cv.pdf) (dated 09/17/2020). See also [publication](../publication/).
+Updated on 04/11/2021. [PDF version](/zwl_assets/weilei-cv.pdf) (dated 09/17/2020). See also [publication](publications-of-weilei-zeng).
 
 Assistant reseacher at [Zhejiang Lab](http://zhejianglab.cn), or Advanced Research Specialist as it is called. Interested in the intersection region of quantum computing, quantum error correction, supercomputing, machine learning, and condensed matter physics.
 
