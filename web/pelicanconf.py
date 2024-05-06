@@ -28,9 +28,9 @@ LINKS = (
 
 # Social widget
 SOCIAL = (
-    ("GitHub","https://github.com/WeileiZeng/weileizeng.github.io/settings/pages"),
-    ("You can add links in your config file", "#"),
-    ("Another social link", "#"),
+    ("GitHub","https://github.com/WeileiZeng"),
+    ("WeChat", "#"),
+    ("Zhihu", "#"),
 )
 
 DEFAULT_PAGINATION = 10
