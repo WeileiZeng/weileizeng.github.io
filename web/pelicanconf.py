@@ -20,7 +20,7 @@ AUTHOR_FEED_RSS = None
 LINKS = (
     ("localhost:8000","http://localhost:8000"),
     ("weileizeng.github.io","https://weileizeng.github.io/"),
-    ("GitHub","https://github.com/WeileiZeng/weileizeng.github.io"),
+    ("GitHub repo","https://github.com/WeileiZeng/weileizeng.github.io"),
     ("Pelican", "https://getpelican.com/"),
     ("Python.org", "https://www.python.org/"),
     ("Jinja2", "https://palletsprojects.com/p/jinja/"),
@@ -28,9 +28,9 @@ LINKS = (
 
 # Social widget
 SOCIAL = (
-    ("GitHub","https://github.com/WeileiZeng"),
-    ("WeChat", "#"),
-    ("Zhihu", "#"),
+    ("GitHub/WeileiZeng","https://github.com/WeileiZeng"),
+    ("WeChat·微信", "#"),
+    ("Zhihu·知乎", "#"),
 )
 
 DEFAULT_PAGINATION = 10
