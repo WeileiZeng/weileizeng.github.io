@@ -1,5 +1,7 @@
 # Personal website
-Author:  Weilei Zeng@2024
+Author:  Weilei Zeng
+
+Dated: May 4th, 2024
 
 project structure
 ```
@@ -63,9 +65,11 @@ Done. Your new project is available at /Users/weileizeng/Documents/GitHub/min-we
 *How to add blog*
 
 - add a new file in `web/content`. Any subfolder will be seen as a catergory. One can start by duplicating the [template.md](web/content/template.md)
+
 *How to add statics files*
 
-- There are two folders for static files: `content/images` and `output/static`
+- There are two folders for static files: `content/images` and `output/static`. Static files will stay as it is and not be built. It is good for images, pdf, or html files.
+
 *How to build and publish*
 
 - First develop  it locally, follow command in [`web/Makefile`](web/Makefile)
