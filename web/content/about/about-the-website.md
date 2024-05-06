@@ -4,7 +4,5 @@ author: Weilei Zeng
 tags: website, python, pelican
 
 
-How to  build the website
-
-
-to be finished
+read more on
+[https://github.com/WeileiZeng/weileizeng.github.io](https://github.com/WeileiZeng/weileizeng.github.io)
