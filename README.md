@@ -2,17 +2,15 @@
 
 project structure
 ```
-.
-├── Makefile
-├── README.md
-├── backup
-├── docs  	          #target folder, root folder for GitHub Pages
-├── env               #python environment, ignored by git
-├── requirements.txt	#python package dependancy
-├── web		            #source file
-│  - Content 		      #blog filesent
-│  - Output		        #static files
-└── zurb-F5-basic	    #pelican theme
+Makefile            #
+README.md           #
+docs                #target folder, root folder for GitHub Pages
+env                 #python environment, ignored by git
+requirements.txt    #python package dependancy
+web                 #source file
+web/content         #blog files
+web/output          #static files
+zurb-F5-basic       #pelican theme
 ```
 
 # tools
@@ -63,5 +61,6 @@ Done. Your new project is available at /Users/weileizeng/Documents/GitHub/min-we
 - show the page using github pages
 - update readme
   - theme
+
 
 
