@@ -1,0 +1,1 @@
+static files should not be build
