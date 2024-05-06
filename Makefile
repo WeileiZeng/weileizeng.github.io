@@ -3,4 +3,4 @@ all:publish
 publish:
 	rsync -r web/output/ docs
 clean:
-	rm -r doc/*
+	rm -r docs/*
