@@ -42,6 +42,7 @@ DEFAULT_PAGINATION = 10
 THEME="../zurb-F5-basic"
 
 #add logo by modify theme file
-SITE_FARICON="images/favicon.ico"
+SITE_FARICON="/images/logos/favicon.ico"
 # SITELOGO="/images/logos/"
-SITE_LOGO="/images/logos/logo@32px.png"
+# SITE_LOGO="/images/logos/logo@96px.png"
+SITE_LOGO="/images/logos/zw@320px.png"
