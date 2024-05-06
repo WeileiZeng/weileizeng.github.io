@@ -40,3 +40,8 @@ DEFAULT_PAGINATION = 10
 
 #add by weilei
 THEME="../zurb-F5-basic"
+
+#add logo by modify theme file
+SITE_FARICON="images/favicon.ico"
+# SITELOGO="/images/logos/"
+SITE_LOGO="/images/logos/logo@32px.png"
