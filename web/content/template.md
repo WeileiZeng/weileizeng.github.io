@@ -1,13 +1,25 @@
-title: template title
-date: 2024-05-04 21:00
-author: manager
+title: template for post on this website
+date: 1992-06-29 21:00
+author: Weilei Zeng
 category: about
-tags: business
+tags: website, pelican
 
-# title
+## A pretty big header
 
-text
+with some random text
 
+A fancy list
 
+- this
+- is
+- an
+-  item
 
+some `Python` code
+```
+def main():
+    print('hello world')
+```
 
+Basic Math $x$
+$$f(x) = \sum_i x^i$$
