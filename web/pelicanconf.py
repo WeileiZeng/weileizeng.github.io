@@ -18,8 +18,8 @@ AUTHOR_FEED_RSS = None
 
 # Blogroll
 LINKS = (
-    ("localhost:8000","http://localhost:8000"),
-    ("weileizeng.github.io","https://weileizeng.github.io/"),
+    ("Home·localhost:8000","http://localhost:8000"),
+    ("Home·weileizeng.github.io","https://weileizeng.github.io/"),
     ("GitHub repo","https://github.com/WeileiZeng/weileizeng.github.io"),
     ("Pelican", "https://getpelican.com/"),
     ("Python.org", "https://www.python.org/"),
