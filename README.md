@@ -82,6 +82,14 @@ Done. Your new project is available at /Users/weileizeng/Documents/GitHub/min-we
 - First develop  it locally, follow command in [`web/Makefile`](web/Makefile)
 - When things get ready, update the built page into [`docs`](docs), following cmd in [`Makefile`](Makefile). Then push the changes to GitHub. One can verify status by visiting the online page, or check out [GitHub Actions](https://github.com/WeileiZeng/weileizeng.github.io/actions).
 
+# Additional modification to the theme
+- add faricon
+- add logo
+- add author in article bottom
+- change link of page header
+
+# Potential issue
+- currently the page lives in the root folder. If put in a subfolder, some links may broke.
 
 # TODO:
 - show the page using github pages
