@@ -7,7 +7,7 @@ tags: Weilei Zeng, photo
 
 My favorite icon
 
-<img src="images/logos/zw@960px.png" alt="drawing" width="300"/>
+<img src="/images/logos/zw@960px.png" alt="drawing" width="300"/>
 
 
 
