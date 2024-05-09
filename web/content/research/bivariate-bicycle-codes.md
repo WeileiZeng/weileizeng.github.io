@@ -9,24 +9,17 @@ tags: qLDPC, bicycle codes, QEC
 本文是qLDPC第一篇登上Nature的理论文章，且以数值计算为主，反应了基于qLDPC码的高编码率量子纠错码对实现容错量子计算的重要性。
 本期将对这篇文章进行图文解读，学习qLDPC的整体脉络和前沿进展。
 
-```
-### Abstract
-
-The accumulation of physical errors1–3 prevents the execution of large-scale algorithms in current quantum computers. Quantum error correction4 promises
-a solution by encoding k logical qubits onto a larger number n of physical qubits,
-such that the physical errors are suppressed enough to allow running a desired computation with tolerable fidelity. Quantum error correction becomes practically realizable once the physical error rate is below a threshold value that depends on the choice of quantum code, syndrome measurement circuit and decoding algorithm5. We present an end-to-end quantum error correction protocol that implements fault-tolerant memory on the basis of a family of low-density parity-check codes6.
-Our approach achieves an error threshold of 0.7% for the standard circuit-based noise model, on par with the surface code7–10 that for 20 years was the leading code in terms of error threshold. The syndrome measurement cycle for a length-n code in our family requires n ancillary qubits and a depth-8 circuit with CNOT gates, qubit initializations and measurements. The required qubit connectivity is a degree-6 graph composed
-of two edge-disjoint planar subgraphs. In particular, we show that 12 logical qubits can be preserved for nearly 1 million syndrome cycles using 288 physical qubits in total, assuming the physical error rate of 0.1%, whereas the surface code would require nearly 3,000 physical qubits to achieve said performance. Our findings bring demonstrations of a low-overhead fault-tolerant quantum memory within the reach of near-term quantum processors.
-```
-
-为了量子系统中的噪声，量子芯片需要尽可能与外界环境相互隔离。而实现量子计算需要对量子比特进行操控，因此需要将量子芯片与所处环境进行耦合，从而不可避免的引入了噪声。
-
-物理噪声的累积阻碍了大规模量子算法的实现。量子纠错提供了一个解决方案，将k个逻辑比特编码在更多数量的n个物理比特上，以此来将噪声降低到可以接受的范围。只要物理噪声低于某个容错阈值，量子纠错就是有效的。这个容错阈值依赖于量子纠错码的选择、症状测量线路和解码算法。本文提出了一个端到端的量子纠错协议，基于一类LDPC码实现了容错内存。
-本方法的线路噪声模型的容错阈值达到了0.7%，与在容错性能上领先了20年的表面码相当。
+![](/images/bicycle/bb_nature_cover.png)
+_(Bravyi et al, Nature 2014)_
 
 ### 研究背景：为什么需要qLDPC码？
 
-量子纠错码在数学上，可以定义成希尔伯特空间的一个子空间。不同的子空间对应了不用的纠错码。最常见的选取子空间的方式使稳定子生成法(Stabilizer formalism)，即先定义测量算符，由所有测量算符构成了本征值全为+1的本征态空间就是用来存储逻辑信息的子空间。量子纠错码比较重要的参数包括$[[n,k,d]],w,p_{th}$，分别是物理比特数、逻辑比特数、距离、测量权重、容错阈值。其中，距离与纠错能力正相关，低的测量权重和高的容错阈值对实验友好，逻辑比特数与物理比特数的比值$k/n$为编码率，编码率越高，资源利用率越高。另外，测量算符是否是近邻的，与实验难度和硬件要求息息相关，也因此引出了目前的两大类纠错码。一类是基于近邻算符的拓扑码，包括表面码。近邻算符的代价是受限的距离和趋向于零的编码率。 另一类属于qLDPC码，没有近邻要求，但要求低测量权重，也就是说，其测量矩阵是稀疏的随机矩阵。qLDPC码已经可以实现线性的编码率和线性的距离。
+为了量子系统中的噪声，量子芯片需要尽可能与外界环境相互隔离。而实现量子计算需要对量子比特进行操控，因此需要将量子芯片与所处环境进行耦合，从而不可避免的引入了噪声。
+物理噪声的累积阻碍了大规模量子算法的实现。量子纠错提供了一个解决方案，将k个逻辑比特编码在更多数量的n个物理比特上，以此来将噪声降低到可以接受的范围。只要物理噪声低于某个容错阈值，量子纠错就是有效的。这个容错阈值依赖于量子纠错码的选择、症状测量线路和解码算法。
+
+本文提出了一个端到端的量子纠错协议，基于一类LDPC码实现了容错内存。本方法的线路噪声模型的容错阈值达到了0.7%，与在容错性能上领先了20年的表面码相当。
+
+量子纠错码在数学上，可以定义成希尔伯特空间的一个子空间。不同的子空间对应了不用的纠错码。最常见的选取子空间的方式使稳定子生成法(Stabilizer formalism)，即先定义测量算符，由所有测量算符构成了本征值全为+1的本征态空间就是用来存储逻辑信息的子空间。量子纠错码比较重要的参数包括$[[n,k,d]],w,p_{th}$，分别是物理比特数、逻辑比特数、距离、测量权重、容错阈值。其中，距离与纠错能力正相关，低的测量权重和高的容错阈值对实验友好，逻辑比特数与物理比特数的比值$k/n$为编码率，编码率越高，资源利用率越高。另外，测量算符是否是近邻的，与实验难度和硬件要求息息相关，也因此引出了目前的两大类纠错码。一类是基于近邻算符的拓扑码，包括表面码。近邻算符的代价是受限的距离和趋向于零的编码率。 另一类属于qLDPC码(quantum low-density parity check code 量子低密度奇偶验证码)，没有近邻要求，但要求低测量权重，也就是说，其测量矩阵是稀疏的随机矩阵。qLDPC码已经可以实现线性的编码率和线性的距离。
 
 表面码的理论已经相对完善，已经有多个基于表面码的量子计算体系架构，从物理比特的硬件实现一直到应用算法的编译。qLDPC码要实现高编码率，也必须在体系架构的每个层面给出解决方案,相关进展参考下表。
 
@@ -56,6 +49,8 @@ _lattice $A\otimes B$_
 
 循环矩阵有几种描述方式。除了直接写出整个矩阵，我们可以借助单位矩阵I和平移矩阵S，以下是大小为7的平移矩阵。
 
+
+
 ![](/images/bicycle/S_shift7.png)
 
 S作用在任意向量上，将使向量平移一个单位，并且最后一位回到第一位。S^T则会反向平移，如下图所示。其中箭头端点和顶点所在位置组成了一个向量。
@@ -69,9 +64,15 @@ $H = I + S^2 + S^3$。
 
 因为H是一个循环矩阵，S作用在H上，在允许行变换的情况下，会得到H本身。
 
-## 构造
+借助乘积和循环的概念，就可以构造出具有准近邻算符的qLDPC码，如下图所示。左侧基于重复码测量矩阵构造，也就是常见的表面码。右侧基于权重为3的循环矩阵构造，测量算符权重为6，最远两比特门距离不超过4，逻辑比特数为18，远高于表面码的2逻辑比特。图中也给出了相应BB码的框架中的多项式。
 
-本文中Bivariate Bicycle Codes的构造用到了以下二维平移矩阵
+![](/images/bicycle/bicycle_codes.png)
+
+_@Kovalev and Pryadko 2013
+http://www.faculty.ucr.edu/~leonid/_
+## Bivariate Bicycle码的构造
+
+本文中Bivariate Bicycle (BB)码的构造用到了以下二维平移矩阵
 
 $$x = S_l \otimes I_m, y = I_l \otimes S_m $$
 
@@ -89,32 +90,32 @@ $$A = A_1 + A_2 + A_3, B=B_1 + B_2 + B_3$$
 
 $$H^X=(A|B),H^Z=(B^T|A^T)$$
 
-因为循环矩阵的特性，可以验证这两个测量矩阵$H^X(H^Z)^T = 0$ mod 2, 是合格的CSS码的定义条件。Lemma 1给出了其参数。【补充】
+因为循环矩阵的特性，可以验证这两个测量矩阵$H^X(H^Z)^T = 0$ mod 2, 是合格的CSS码的定义条件。Lemma 1给出了其参数，$n=2lm, k=2\times dim(ker(A) \cap ker(B))$。逻辑比特数k可以直接由矩阵A和B确定。
 
-接下来以$[[144,12,12]]$码为例进行图解，其多项式为
+接下来以$[[144,12,12]]$码为例图解其构造方式，其多项式为
 
 $$A = x^3 + y + y^2, B = y^3 + x + x^2, l=12,m=6$$
 
 在二维阵列中用下图表示,测量比特位于箭头顶点。
 ![](/images/bicycle/AB.png)
 
-BB码将所有物理比特划分为四个区块的叠加，分别标记为LRXZ，每一个区块都是mxl的矩形阵列。
+BB码将所有物理比特划分为四个区块的叠加，分别标记为L,R,X,Z，每一个区块都是$m \times l$的矩形阵列。
 
-上图的A在L区块上，B在R区块上。A和B的相对位置是可以调整的，作者为了实现四个近邻比特的测量，将AB以下图的形式组合。
+上图的矩阵多项式A所测量的比特位于L区块，B位于R区块。这是因为A位于测量矩阵H的左边（left）。A和B中的物理比特的相对位置并不唯一。作者为了实现其中四个比特的近邻测量，将A、B以下图中的相对位置进行组合。
 
-![](/images/bicycle/hx.png)
+![](/images/bicycle/hx_noted.png)
 _(Bravyi et al, Nature 2014)_
 
-类似的，描述At Bt
+类似的，可以用下图来描述$A^T,B^T$
 
 ![](/images/bicycle/hz.png)
 
-因为LRXZ四个区块的相对位置是不确定的，所以需要某个方式来确定。作者选择了图中的黑色菱形来作为基准，菱形的圆顶点代表了需要长距离连接的比特位置，近处顶点代表了X和Z测量的辅助比特的位置。这样每个菱形就对应了唯一的X测量和Z测量，以及对应辅助比特的位置。通过对菱形进行平移可以得到新的测量算符。这样选择的好处是拥有四个近邻比特，且测量比特位于其正中，并且在后续工作中作者在两个平行二维阵列上实现了没有交叉的测量线路。但事实上，并没有足够证据说明这个选择是最优的，比如可以选择让A中的两个近邻比特与B中的远比特相邻，也是一个可选的方案。
+可以看出来，$A,B,A^T,B^T$的相对位置可以以图中的菱形为基准来确定。菱形的较远的顶点代表了需要长距离连接的比特位置，近处顶点代表了X和Z测量的辅助比特的位置。这样每个菱形就对应了唯一的X测量和Z测量，以及对应辅助比特的位置。通过对菱形进行平移可以得到新的测量算符。这样选择的好处是X和Z类型的测量算符中都有四个近邻比特，且用于测量的辅助比特位于其正中。在下文的物理比特布局部分，作者基于这个布局在两个平行二维阵列上实现了没有交叉的测量线路。事实上，并没有足够证据说明这个选择一定是最优的，比如可以选择让A中的两个近邻比特与B中的远比特相邻，也是一个可选的方案。
 
-这样就完整的定义了144码。
+借用这两个多项式和图中的基准菱形用于定位，已经完整的定义了$[[144,12,12]]$码。
 
 现在回顾一下Bivariate Bicycle Codes的定义和命名。
-Bicycle是因为H由左侧 的A和右侧的B两个循环矩阵构成。Bivariate代表定义循环矩阵用到了两个变量x和y，对应了两个方向的平移。因此将这个码命名为双变量自行车码
+Bicycle是因为H由左侧 的A和右侧的B两个循环矩阵构成。Bivariate代表定义循环矩阵用到了两个变量x和y，对应了两个方向的平移。因此将这个码命名为双变量自行车码。
 
 ![Pininterest img](https://i.pinimg.com/originals/25/05/16/25051662be929d78194985190aeee50a.gif)
 _@Image by Pinterest_
@@ -142,7 +143,7 @@ _@Fig. 2 (Bravyi et al, Nature 2014)_
 
 BB码的解码由Belief Propagation + OSD完成。BP是经典纠错码的最优解码算法，但在量子纠错码中受限于其解码图中的短环，已经有数十种方案用来克服短环的问题，目前从解码复杂度和纠错能力来说，最好的是BP+OSD。本文进一步的将BP+OSD应用在线路噪声模型上。先用预设的噪声模型训练出BP解码器中的比特-测量图的权重系数。再用此解码器对每一个测量的症状进行解码。
 
-本文进一步给出了用BP计算纠错码的距离的上界的方法和用BP计算给定线路的距离的上界的算法。解码和计算距离是两个形式上类似的问题，一般认为其理论上是等价的两个问题。例如random window decoder既可以用来解码，也可以用来计算距离【引用】。但这两者的等价性目前还没有文章给出直接的证明或结论，是一个可以探究的问题。
+本文进一步给出了用BP计算纠错码的距离的上界的方法和用BP计算给定线路的距离的上界的算法。解码和计算距离是两个形式上类似的问题，一般认为其理论上是等价的两个问题。例如random window decoder既可以用来解码，也可以用来计算距离[5]。但这两者的等价性目前还没有文章给出直接的证明或结论，是一个可以探究的问题。
 
 ## 数值模拟结果
 
@@ -172,7 +173,7 @@ BB码的核心假设和主要挑战之一是位于基准菱形上的长程双比
 
 这样每个平面上的测量都可以用一个没有交叉的平面图里来表示。
 
-![](/images/bicycle/subgraph_wheels.png
+![](/images/bicycle/subgraph_wheels.png)
 
 _(Bravyi et al, Nature 2014)_
 
@@ -188,19 +189,33 @@ _@Weilei Zeng 2024_
 
 至此，BB码确实在两个平面上实现了测量。但本布局最大的问题，是BB码的构造是基于周期性边界条件。也就是说，不管是一个平面，还是两个平面，这些平面其实都是torus（甜甜圈）。如何将torus改为具有边界的矩形阵列是一个巨大挑战？一般将周期性边界切割以后，会影响边界上相应稳定子的互易性和纠错码的参数性质，包括编码率、距离、测量权重等。
 
+## 延伸课题
+
+基于本文的成果和进展，提出若干开放性问题
+
+- 除了文中的权重是6的例子，是否考虑项目为4的多项式，权重为8？权重为8的测量算符理论上也可以在双平面布局中实现。
+- 如何去掉周期性边界条件？一般对平面进行切割时，边界上的测量算符的互易性会破坏，这将如何影响纠错码的编码率和距离等参数以及纠错表现？
+- 解码算法。众所周知，BP解码算法离最优解码算法还有很大的提升空间。
+- 在多少物理比特的系统上，qLDPC码会超越表面码的资源利用率和纠错表现？本文给出了144物理比特的例子，(Xu et al 2024)给出了1000比特量级的例子。在100比特以内，也就是目前的实验水平上，能否构造出高质量的qLDPC码？
+- 适配硬件平台：本文纠错码的构造是基于超导，在拓展到离子阱、中性原子和光量子平台时有何优劣？
+- 高维度的架构是否能提升参数和容错能力。借助time-space code或者冗余测量，二维纠错码实际处于四维空间中。BB码的架构在高维度如何推广？
+
+
 _Acronym 缩写_
 
-- ancilla qubit
-- quantum error-correctin codes
-- qLDPC
-- syndrome
-- stabilizer
-- check/measurement
+- ancilla qubit 辅助比特
+- quantum error-correctin code 量子纠错码
+- qLDPC, quantum low-density parity check code 量子低密度奇偶验证码
+- syndrome 症状
+- distance 距离
+- circuit noise model 线路噪声模型
+- stabilizer 稳定子
+- check/measurement 测量（算符）
 
-## Reference
+## References
 
-BP+OSD
-
-qhp sub
-
-leonid bicycle
+- Bravyi, S., Cross, A.W., Gambetta, J.M. et al. High-threshold and low-overhead fault-tolerant quantum memory. Nature 627, 778–782 (2024). [https://doi.org/10.1038/s41586-024-07107-7](https://doi.org/10.1038/s41586-024-07107-7)
+- [https://github.com/sbravyi/BivariateBicycleCodes/](https://github.com/sbravyi/BivariateBicycleCodes/)
+- Ted Yoder on BB codes, [https://www.youtube.com/watch?v=i0fX0ZDbQAQ](https://www.youtube.com/watch?v=i0fX0ZDbQAQ)
+- Leonid Pryadko on Bicycle codes, [http://www.faculty.ucr.edu/~leonid/](http://www.faculty.ucr.edu/~leonid/)
+- [5] I. Dumer, A. A. Kovalev, and L. P. Pryadko, Distance Verification for Classical and Quantum LDPC Codes, IEEE Transactions on Information Theory 63, 4675-4686 (2017). [http://dx.doi.org/10.1109/TIT.2017.2690381](http://dx.doi.org/10.1109/TIT.2017.2690381)
