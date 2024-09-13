@@ -55,6 +55,140 @@
         
 
             <article>
+                <a href="/raid5-as-an-error-correcting-code.html"><h3 class="article-title">RAID5 as an Error-correcting Code</h3></a>
+<h6 class="subheader" title="2024-09-13T10:00:00+08:00">五 13 九月 2024
+</h6>
+
+
+<p>As a researcher in the field of quantum error correction, I have cited it in the application section of my slides many times, that error correcting codes are everywhere, including memories like RAID and teleportation procotol like 5G and 6G. But it is only recently I learned how eaactly the error correcting codes are used in RAID5, when I planned to but a NAS storage for myself and study how it works.</p>
+<p><img alt="" src="images/300px-RAID_5.svg.png"></p>
+<p>As seen in this images for a NAS with 4 disks, all storages have been divided into strips. The strips names with numbers like A1,A2,B1,..., are normal data storages. The stipes named with index <code>p</code> are parity computed from stipes with same alphabet name. For example, <span class="math">\(A_p = A1+A2+A3 mod 2\)</span>. Equivalently, <span class="math">\(A1+A2+A3+A_p=0 mod 2\)</span>. With this extra parity, if any one of them is lost, it can be recovered from the parity of the other three.</p>
+<p>From the view of error correcting codes, this protocal encodes three bits of (logical) information into four (physical) bits. The encoded messaged, <span class="math">\(m=[A1 A2 A3 A_p]\)</span> as binary vector form,  should satisfy the parity check condition <span class="math">\(Hm^T=0\)</span>, where <span class="math">\(H = [1 1 1 1]\)</span>. This error correcting code has parameters <span class="math">\([n,k,d]=[4,3,2]\)</span>, and it is indeed the dual code of repetition code. Normally a code with distance <span class="math">\(d=2\)</span> could only detect single error but not correcting them. But in NAS storage, it is not an unknown erroneous bit, but actually an erasure channel. The issue is about a lost disk and we know which one it is. Distsance 2 is enough to recover single erasure.</p>
+<p>For now we have seen how the error correcting code is used in RAID5, with only the A sectors. Then why there are B, C, Ds in the scheme? This results from balancing reading and writing speed. When writing new data, the processor need to finish the following:  write data into one disk; read other two disks; compute the parity; write parity into the fourth disk. Ignore the delay of computing parity, it read two disks and write two disks. Normally, a disk can do read and write at the same time, and read is much faster than writing. Hence, to read peak performance, it is better to distribute reading and writing tasks evenly among all disks. That why we see strips B,C,D with parity strip in different location. In RAID5, the strip length is 64k (65536 * 8 = 524288 bits ).</p>
+<p>RAID5 can recover a lost disk among any number of disks, just by extending the alphabet list of A,B,C,D,E,.... Then a question would be, how can one recover from two lost disks.</p>
+<p>Say if A1 and B1 are lost, based on RAID5, one can recover A1+B1. In order to recover both of them, one should have A1 or B1 contained in an extra parity bit. To be more general, in order to recover any two disks, then any two disks should been computed from at least one different parity bit. To achieve this, one can add unique index <span class="math">\(i,j\)</span> for each disk and assign index <span class="math">\(l\)</span> for parity bits, then let parity <span class="math">\(P_l\)</span> computing parity for all <span class="math">\(i=l\)</span> and <span class="math">\(j=l\)</span>. This ensure each disk have parity info in two different parity bits.</p>
+<div class="highlight"><pre><span></span><code><span class="n">P</span> <span class="n">o</span> <span class="n">o</span>
+<span class="n">o</span> <span class="n">P</span> <span class="n">o</span>
+<span class="n">o</span> <span class="n">o</span> <span class="n">P</span>
+<span class="c1"># 2D array to recover from any two lost disks</span>
+<span class="c1"># P for parity disk</span>
+<span class="c1"># o for data disk</span>
+</code></pre></div>
+
+<p>Let me explain the procotal again. We are actually distribute the disks in a 2D array. The disagnal terms are for parity computations, which compute all bits in its row and column.</p>
+<p>This procotal is enough, but may not be the most efficient one. Since to recover x,y from x+y, one only need to know x or y, but not both x and y. I will leave this for future explorations.</p>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script><p class="subheader">Category: <a href="/category/blog.html">blog</a>
+
+    Tagged: 
+    <a href="/tag/raid5-qec-error-correcting-code.html">raid5 QEC error-correcting-code </a>
+
+Published by <a href="/author/weilei-zeng.html">Weilei Zeng</a>
+    
+</p>
+
+
+
+
+
+            </article>
+
+
+                <hr  class="gradient"/>
+
+
+        
+
+
+            <article>
+                <a href="/high-threshold-and-low-overhead-fault-tolerant-quantum-memory-bivariate-bicycle-codes.html"><h3 class="article-title">High-threshold and low-overhead fault-tolerant quantum memory - Bivariate Bicycle Codes</h3></a>
+<h6 class="subheader" title="2024-05-07T21:00:00+08:00">二 07 五月 2024
+</h6>
+
+
+<p>随着量子计算的产业逐年扩大，量子硬件不断规模化，量子比特数上升到1000量级。在此规模的NISQ硬件上，能否实现有效的量子算法？能否 …</p><p class="subheader">Category: <a href="/category/research.html">research</a>
+
+    Tagged: 
+    <a href="/tag/qldpc.html">qLDPC </a>
+    <a href="/tag/bicycle-codes.html">bicycle codes </a>
+    <a href="/tag/qec.html">QEC </a>
+
+Published by <a href="/author/weilei-zeng.html">Weilei Zeng</a>
+    
+</p>
+
+
+
+
+
+                <a class="button radius secondary small right" href="/high-threshold-and-low-overhead-fault-tolerant-quantum-memory-bivariate-bicycle-codes.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
                 <a href="/llm-and-gpt.html"><h3 class="article-title">LLM and GPT</h3></a>
 <h6 class="subheader" title="2024-05-06T16:00:00+08:00">一 06 五月 2024
 </h6>
@@ -79,11 +213,9 @@ Published by <a href="/author/weilei-zeng.html">Weilei Zeng</a>
 
 
 
-            </article>
-
-
+                <a class="button radius secondary small right" href="/llm-and-gpt.html">Read More</a>
                 <hr  class="gradient"/>
-
+            </article>
 
         
 
@@ -190,23 +322,19 @@ Published by <a href="/author/weilei-zeng.html">Weilei Zeng</a>
 <li>item</li>
 </ul>
 <p>some <code>Python</code> code</p>
-<div class="highlight"><pre><span></span><code>def main():
-    print(&#39;hello world&#39;)
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;hello world&#39;</span><span class="p">)</span>
 </code></pre></div>
 
+<div class="highlight"><pre><span></span><code><span class="nv">Basic</span><span class="w"> </span><span class="nv">Math</span><span class="w"> </span><span class="p">$</span><span class="nv">x</span><span class="p">$</span>
+<span class="p">$$</span><span class="nf">f</span><span class="p">(</span><span class="nv">x</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>\<span class="nv">sum_i</span><span class="w"> </span><span class="nv">x</span><span class="o">^</span><span class="nv">i</span><span class="p">$$</span>
+</code></pre></div>
+
+<p>will be rendered as</p>
 <p>Basic Math <span class="math">\(x\)</span>
 </p>
 <div class="math">$$f(x) = \sum_i x^i$$</div>
-<p><em>Picture</em></p>
-<p>~<a href="">img</a></p>
-<p>Links</p>
-<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
-    var align = "center",
-        indent = "0em",
-        linebreak = "false";
-
-    if (false) {
-        align = (screen.width …</script><script type='text/javascript'>if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+<p>(In dev model on mac, the equations …</p><script type='text/javascript'>if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
         linebreak = "false";
@@ -312,6 +440,7 @@ Published by <a href="/author/weilei-zeng.html">Weilei Zeng</a>
             <li><a href="/category/alembic.html">alembic</a></li>
             <li><a href="/category/blog.html">blog</a></li>
             <li><a href="/category/news.html">news</a></li>
+            <li><a href="/category/research.html">research</a></li>
    
         </ul>
 

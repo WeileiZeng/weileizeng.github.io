@@ -1,0 +1,28 @@
+%!tikz editor 1.0
+\documentclass{article}
+\usepackage{tikz}
+\usepackage[graphics, active, tightpage]{preview}
+\PreviewEnvironment{tikzpicture}
+
+%!tikz preamble begin
+
+%!tikz preamble end
+
+
+\begin{document}
+%!tikz source begin
+\begin{tikzpicture}
+
+%lattice
+\foreach \x in {1,...,7}
+  \foreach \y in {1,...,7}
+  \draw (\x,\y) circle (0.3cm);
+
+  % error
+  \foreach \x/\y in {1/1,1/2,2/1,2/2,3/1,3/2}
+  \fill[red] (\x,\y) circle (0.3cm);
+
+\end{tikzpicture}
+%!tikz source end
+
+\end{document}

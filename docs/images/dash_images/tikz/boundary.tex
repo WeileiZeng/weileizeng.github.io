@@ -1,0 +1,52 @@
+%!tikz editor 1.0
+\documentclass{article}
+\usepackage{tikz}
+\usepackage[graphics, active, tightpage]{preview}
+\PreviewEnvironment{tikzpicture}
+
+%!tikz preamble begin
+
+%!tikz preamble end
+
+\usetikzlibrary{shapes.misc}
+
+\tikzset{
+    point/.style={
+        thick,
+        draw=red,
+        cross out,
+        inner sep=0pt,
+        minimum width=8pt,
+        minimum height=8pt,
+    },
+}
+
+
+\begin{document}
+
+
+
+%!tikz source begin
+\begin{tikzpicture}
+
+   
+   \draw [line width=0.6mm,] (10,0) -- (12,0) -- (12,2) -- (10,2) -- (10,0);
+
+ \draw[blue][->]        (9.5,1)   -- (8.5,1);
+
+   \draw [line width=0.6mm,] (6,-0.2) -- (8,-0.2)     (8.2, 0) -- (8.2,2)  (8,2.2)  -- (6,2.2)  (5.8,2) -- (5.8,0);
+   
+    \draw[blue][->]        (5.5,1)   -- (4.5,1);
+
+   \draw [line width=0.6mm,] (2,-0.2) -- (4,-0.2)     (4.2, 0) -- (4.2,2)  (4,2.2)  -- (2,2.2)  (1.8,2) -- (1.8,0);
+
+
+\foreach \x in {(2,-0.2),  (4,-0.2)   ,  (4.2, 0) , (4.2,2)  ,(4,2.2),   (2,2.2) , (1.8,2)  ,(1.8,0)}
+  \fill[red] \x circle (0.1cm);  
+
+   
+\end{tikzpicture}
+%!tikz source end
+
+
+\end{document}

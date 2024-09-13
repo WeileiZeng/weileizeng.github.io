@@ -1,0 +1,485 @@
+This is LuaHBTeX, Version 1.16.0 (TeX Live 2023)  (format=lualatex 2023.6.27)  18 JUL 2023 14:29
+ restricted system commands enabled.
+ file:line:error style messages enabled.
+**spc.tex
+(./spc.tex
+LaTeX2e <2022-11-01> patch level 1
+Lua module: luaotfload 2022-10-03 3.23 Lua based OpenType font support
+Lua module: lualibs 2022-10-04 2.75 ConTeXt Lua standard libraries.
+Lua module: lualibs-extended 2022-10-04 2.75 ConTeXt Lua libraries -- extended c
+ollection.
+luaotfload | conf : Root cache directory is "/Users/weileizeng/Library/texlive/2
+023/texmf-var/luatex-cache/generic/names".
+luaotfload | init : Loading fontloader "fontloader-2022-10-03.lua" from kpse-res
+olved path "/usr/local/texlive/2023/texmf-dist/tex/luatex/luaotfload/fontloader-
+2022-10-03.lua".
+Lua-only attribute luaotfload@noligature = 1
+luaotfload | init : Context OpenType loader version 3.120
+Inserting `luaotfload.node_processor' in `pre_linebreak_filter'.
+Inserting `luaotfload.node_processor' in `hpack_filter'.
+Inserting `luaotfload.glyph_stream' in `glyph_stream_provider'.
+Inserting `luaotfload.define_font' in `define_font'.
+Lua-only attribute luaotfload_color_attribute = 2
+luaotfload | conf : Root cache directory is "/Users/weileizeng/Library/texlive/2
+023/texmf-var/luatex-cache/generic/names".
+Inserting `luaotfload.harf.strip_prefix' in `find_opentype_file'.
+Inserting `luaotfload.harf.strip_prefix' in `find_truetype_file'.
+Removing  `luaotfload.glyph_stream' from `glyph_stream_provider'.
+Inserting `luaotfload.harf.glyphstream' in `glyph_stream_provider'.
+Inserting `luaotfload.harf.finalize_vlist' in `post_linebreak_filter'.
+Inserting `luaotfload.harf.finalize_hlist' in `hpack_filter'.
+Inserting `luaotfload.cleanup_files' in `wrapup_run'.
+Inserting `luaotfload.harf.finalize_unicode' in `finish_pdffile'.
+Inserting `luaotfload.glyphinfo' in `glyph_info'.
+Lua-only attribute luaotfload.letterspace_done = 3
+Inserting `luaotfload.aux.set_sscale_dimens' in `luaotfload.patch_font'.
+Inserting `luaotfload.aux.set_font_index' in `luaotfload.patch_font'.
+Inserting `luaotfload.aux.patch_cambria_domh' in `luaotfload.patch_font'.
+Inserting `luaotfload.aux.fixup_fontdata' in `luaotfload.patch_font_unsafe'.
+Inserting `luaotfload.aux.set_capheight' in `luaotfload.patch_font'.
+Inserting `luaotfload.aux.set_xheight' in `luaotfload.patch_font'.
+Inserting `luaotfload.rewrite_fontname' in `luaotfload.patch_font'. L3 programm
+ing layer <2023-02-22>
+Inserting `tracingstacklevels' in `input_level_string'.
+(/usr/local/texlive/2023/texmf-dist/tex/latex/pdfmanagement-testphase/pdfmanage
+ment-testphase.sty
+Package: pdfmanagement-testphase 2023-03-09 v0.95x LaTeX PDF management testpha
+se bundle
+
+(/usr/local/texlive/2023/texmf-dist/tex/latex/tagpdf/tagpdf-base.sty
+Package: tagpdf-base 2023-03-07 v0.98e part of tagpdf - provide base, no-op ver
+sions of the user commands 
+\c@g__tag_struct_abs_int=\count183
+)
+(/usr/local/texlive/2023/texmf-dist/tex/latex/pdfmanagement-testphase/pdfmanage
+ment-testphase.ltx
+File: pdfmanagement-testphase.ltx 2023-03-09 v0.95x PDF management code (testph
+ase)
+\g__pdfmanagement_EmbeddedFiles_int=\count184
+
+(/usr/local/texlive/2023/texmf-dist/tex/latex/l3experimental/l3bitset/l3bitset.
+sty
+Package: l3bitset 2023-01-24 L3 Experimental bitset support
+\l__bitset_internal_int=\count185
+)
+\l__pdfmeta_xmp_indent_int=\count186
+))
+(/usr/local/texlive/2023/texmf-dist/tex/latex/latex-lab/documentmetadata-suppor
+t.ltx)
+(/usr/local/texlive/2023/texmf-dist/tex/latex/l3backend/l3backend-luatex.def
+File: l3backend-luatex.def 2023-01-16 L3 backend support: PDF output (LuaTeX)
+\l__color_backend_stack_int=\count187
+\l__pdf_internal_box=\box51
+)
+(/usr/local/texlive/2023/texmf-dist/tex/latex/pdfmanagement-testphase/l3backend
+-testphase-luatex.def
+File: l3backend-testphase-luatex.def 2023-03-09 LaTeX PDF management testphase 
+bundle backend support:PDFoutput(LuaTeX)
+
+(/usr/local/texlive/2023/texmf-dist/tex/latex/pdfmanagement-testphase/l3ref-tmp
+.sty
+Package: l3ref-tmp 2021-06-23 L3 Experimental cross-referencing
+)
+\l__pdf_backend_tmpa_box=\box52
+\l__pdf_backend_tmpb_box=\box53
+\g__pdf_backend_resourceid_int=\count188
+\g__pdf_backend_name_int=\count189
+\g__pdf_backend_page_int=\count190
+)
+(/usr/local/texlive/2023/texmf-dist/tex/latex/pdfmanagement-testphase/pdfmanage
+ment-firstaid.sty
+Package: pdfmanagement-firstaid 2023-03-09 v0.95x LaTeX PDF management testphas
+e bundle / firstaid-patches
+
+Package pdfmanagement Info: loading pdfmanagement firstaid code for pgf
+
+)
+(/usr/local/texlive/2023/texmf-dist/tex/latex/revtex/revtex4-2.cls
+Document Class: revtex4-2 2020/10/03 4.2e (https://journals.aps.org/revtex/ for
+ documentation)
+ Copyright (c) 2019 American Physical Society.
+ mailto:revtex@aps.org
+ Licensed under the LPPL:
+http://www.ctan.org/tex-archive/macros/latex/base/lppl.txt
+ Arthur Ogawa <arthur_ogawa at sbcglobal dot net>
+ Based on work by David Carlisle <david at dcarlisle.demon.co.uk>
+ Version (4.2d,4.2e): Modified by Mark Doyle and Phelype Oleinik
+ .
+ltxutil[2020/10/03 4.2e utilities package (portions licensed from W. E. Baxter 
+web at superscript.com)]
+LaTeX Info: Redefining \@centercr on input line 356.
+Class revtex4-2 Info: Repairing hyperref-unfriendly LaTeX definition of \mpfoot
+note on input line 481.
+Class revtex4-2 Info: Repairing broken LateX \@sect on input line 803.
+\intertabularlinepenalty=\count191
+\@tbpen=\count192
+\@arstrutbox@hline=\box54
+Class revtex4-2 Info: Repairing broken LaTeX \@xbitor on input line 1834.
+Class revtex4-2 Info: Making \typeout \long on input line 2099.
+ltxfront[2020/10/03 4.2e frontmatter package (AO,DPC,MD)]
+\c@affil=\count193
+\c@collab=\count194
+\absbox=\box55
+ltxgrid[2020/10/03 4.2e page grid package (portions licensed from W. E. Baxter 
+web at superscript.com)]
+\c@linecount=\count195
+\output@latex=\toks16
+\box@size@1=\box56
+\box@size@2=\box57
+\@protection@box=\box58
+\@topmark@saved=\toks17
+\footins@saved=\box59
+\footins@recovered=\box60
+\column@recovered=\box61
+\pagesofar=\box62
+\footsofar=\box63
+\pagegrid@col=\count196
+Class revtex4-2 Info: Overriding \@vspace, \@vspacer, \@no@pgbk, \@newline, and
+ \\  on input line 5665.
+\c@part=\count197
+\c@section=\count198
+\c@subsection=\count199
+\c@subsubsection=\count266
+\c@paragraph=\count267
+\c@subparagraph=\count268
+\abovecaptionskip=\skip48
+\belowcaptionskip=\skip49
+\c@figure=\count269
+\fbox@1=\box64
+\c@table=\count270
+\fbox@2=\box65
+\c@video=\count271
+\fbox@4=\box66
+\@bibdataout=\write3
+\widetext@top=\box67
+\widetext@bot=\box68
+Class revtex4-2 Info: Selecting society aps on input line 7658.
+(/usr/local/texlive/2023/texmf-dist/tex/latex/revtex/aps4-2.rtx
+File: aps4-2 2020/10/03 4.2e (https://journals.aps.org/revtex/ for documentatio
+n)
+Class revtex4-2 Info: RevTeX society APS selected on input line 40.
+)
+Class revtex4-2 Info: Selecting journal prb on input line 7660.
+Class revtex4-2 Info: APS journal PRB selected on input line 7661.
+
+(/usr/local/texlive/2023/texmf-dist/tex/latex/revtex/aps12pt4-2.rtx
+File: aps12pt4-2 2020/10/03 4.2e (https://journals.aps.org/revtex/ for document
+ation)
+Class revtex4-2 Info: RevTeX pointsize 12pt selected on input line 39.
+)
+(/usr/local/texlive/2023/texmf-dist/tex/latex/textcase/textcase.sty
+Package: textcase 2022/07/10 v1.03 Text only upper/lower case changing (DPC)
+Package textcase Info: Defining Legacy names on input line 20.
+)
+(/usr/local/texlive/2023/texmf-dist/tex/latex/url/url.sty
+\Urlmuskip=\muskip16
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+)
+(/usr/local/texlive/2023/texmf-dist/tex/latex/natbib/natbib.sty
+Package: natbib 2010/09/13 8.31b (PWD, AO)
+\bibhang=\skip50
+\bibsep=\skip51
+LaTeX Info: Redefining \cite on input line 694.
+\c@NAT@ctr=\count272
+)
+Class revtex4-2 Info: Repairing natbib's \BibitemShut on input line 7665.
+
+(/usr/local/texlive/2023/texmf-dist/tex/latex/revtex/revsymb4-2.sty
+Package: revsymb4-2 2020/10/03 4.2e (https://journals.aps.org/revtex/ for docum
+entation)
+LaTeX Info: Redefining \REV@mathfrak on input line 128.
+)
+luaotfload | db : Font names database loaded from /Users/weileizeng/Library/texl
+ive/2023/texmf-var/luatex-cache/generic/names/luaotfload-names.luc.gz)
+(/usr/local/texlive/2023/texmf-dist/tex/latex/pstricks/pstricks.sty
+Package: pstricks 2022/19/23 v0.72 LaTeX wrapper for `PSTricks' (RN,HV)
+
+(/usr/local/texlive/2023/texmf-dist/tex/generic/iftex/iftex.sty
+Package: iftex 2022/02/03 v1.0f TeX engine tests
+)
+(/usr/local/texlive/2023/texmf-dist/tex/latex/xcolor/xcolor.sty
+Package: xcolor 2022/06/12 v2.14 LaTeX color extensions (UK)
+
+(/usr/local/texlive/2023/texmf-dist/tex/latex/graphics-cfg/color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package xcolor Info: Driver file: luatex.def on input line 227.
+
+(/usr/local/texlive/2023/texmf-dist/tex/latex/graphics-def/luatex.def
+File: luatex.def 2022/09/22 v1.2d Graphics/color driver for luatex
+)
+(/usr/local/texlive/2023/texmf-dist/tex/latex/graphics/mathcolor.ltx)
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1353.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1357.
+Package xcolor Info: Model `RGB' extended on input line 1369.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1371.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1372.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1373.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1374.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1375.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1376.
+)
+(/usr/local/texlive/2023/texmf-dist/tex/latex/pdfmanagement-testphase/xcolor-pa
+tches-tmp-ltx.sty
+Package: xcolor-patches-tmp-ltx 2023-03-09 v0.95x patch xcolor for l3color
+)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/xkeyval/pst-xkey.tex
+File: pst-xkey.tex 2005/11/25 v1.6 PSTricks specialization of xkeyval (HA)
+
+(/usr/local/texlive/2023/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+Package: xkeyval 2022/06/16 v2.9 package option processing (HA)
+
+(/usr/local/texlive/2023/texmf-dist/tex/generic/xkeyval/xkeyval.tex
+(/usr/local/texlive/2023/texmf-dist/tex/generic/xkeyval/xkvutils.tex
+\XKV@toks=\toks18
+\XKV@tempa@toks=\toks19
+
+(/usr/local/texlive/2023/texmf-dist/tex/generic/xkeyval/keyval.tex))
+\XKV@depth=\count273
+File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
+)))
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pstricks/pstricks.tex
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pstricks/pst-fp.tex
+`pst-fp' v0.06, 2020/11/20 (hv)
+\pstFP@xs=\count274
+\pstFP@xia=\count275
+\pstFP@xib=\count276
+\pstFP@xfa=\count277
+\pstFP@xfb=\count278
+\pstFP@rega=\count279
+\pstFP@regb=\count280
+\pstFP@regs=\count281
+\pstFP@times=\count282
+)
+(/usr/local/texlive/2023/texmf-dist/tex/latex/pgf/utilities/pgffor.sty
+(/usr/local/texlive/2023/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.te
+x
+\pgfutil@everybye=\toks20
+\pgfutil@tempdima=\dimen139
+\pgfutil@tempdimb=\dimen140
+)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def
+\pgfutil@abb=\box69
+) (/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.tex
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/pgf.revision.tex)
+Package: pgfrcs 2023-01-15 v3.1.10 (3.1.10)
+))
+(/usr/local/texlive/2023/texmf-dist/tex/latex/pgf/utilities/pgfkeys.sty
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
+\pgfkeys@pathtoks=\toks21
+\pgfkeys@temptoks=\toks22
+
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/utilities/pgfkeyslibraryfil
+tered.code.tex
+\pgfkeys@tmptoks=\toks23
+)))
+(/usr/local/texlive/2023/texmf-dist/tex/latex/pgf/math/pgfmath.sty
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex
+\pgf@x=\dimen141
+\pgf@xa=\dimen142
+\pgf@xb=\dimen143
+\pgf@xc=\dimen144
+\pgf@y=\dimen145
+\pgf@ya=\dimen146
+\pgf@yb=\dimen147
+\pgf@yc=\dimen148
+\c@pgf@counta=\count283
+\c@pgf@countb=\count284
+\c@pgf@countc=\count285
+\c@pgf@countd=\count286
+)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
+\pgfmath@dimen=\dimen149
+\pgfmath@count=\count287
+\pgfmath@box=\box70
+\pgfmath@toks=\toks24
+\pgfmath@stack@operand=\toks25
+\pgfmath@stack@operation=\toks26
+)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.
+tex)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.basic
+.code.tex)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.trigo
+nometric.code.tex)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.rando
+m.code.tex)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.compa
+rison.code.tex)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.
+code.tex)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.round
+.code.tex)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.
+code.tex)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integ
+erarithmetics.code.tex)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex
+\c@pgfmathroundto@lastzeros=\count288
+)))
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex
+Package: pgffor 2023-01-15 v3.1.10 (3.1.10)
+\pgffor@iter=\dimen150
+\pgffor@skip=\dimen151
+\pgffor@stack=\toks27
+\pgffor@toks=\toks28
+))
+\psLoopIndex=\count289
+`PSTricks' v3.18  <2022/11/28> (tvz,hv)
+\pst@dima=\dimen152
+\pst@dimb=\dimen153
+\pst@dimc=\dimen154
+\pst@dimd=\dimen155
+\pst@dimg=\dimen156
+\pst@dimh=\dimen157
+\pst@dimm=\dimen158
+\pst@dimn=\dimen159
+\pst@dimo=\dimen160
+\pst@dimp=\dimen161
+\pst@hbox=\box71
+\pst@ibox=\box72
+\pst@boxg=\box73
+\pst@cnta=\count290
+\pst@cntb=\count291
+\pst@cntc=\count292
+\pst@cntd=\count293
+\pst@cntg=\count294
+\pst@cnth=\count295
+\pst@cntm=\count296
+\pst@cntn=\count297
+\pst@cnto=\count298
+\pst@cntp=\count299
+\@zero=\count300
+\pst@toks=\toks29
+--- We are running lualatex with luapstricks ---
+Lua module: luapstricks 2023-02-17 v0.8 PSTricks backend for LuaLaTeX
+Lua function luaPST = 26
+Lua function luaPSTcolor = 27
+Lua function luaPSTbox = 28 (/usr/local/texlive/2023/texmf-dist/tex/generic/pst
+ricks/pstricks-color.tex)
+\psunit=\dimen162
+\psxunit=\dimen163
+\psyunit=\dimen164
+\pst@C@@rType=\count301
+\pslinewidth=\dimen165
+\psk@startLW=\dimen166
+\psk@endLW=\dimen167
+
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pstricks/pstricks-arrows.tex
+\pshooklength=\dimen168
+\pshookwidth=\dimen169
+)
+\pst@customdefs=\toks30
+
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pstricks/pstricks-dots.tex)
+\pslinearc=\dimen170
+\pst@symbolStep=\dimen171
+\pst@symbolWidth=\dimen172
+\pst@symbolLinewidth=\dimen173
+\everypsbox=\toks31
+\psframesep=\dimen174
+\pslabelsep=\dimen175
+\sh@wgridXunit=\dimen176
+\sh@wgridYunit=\dimen177
+\pst@shift=\dimen178
+\ps@imagectr=\count302
+)
+File: pstricks.tex 2022/11/28 v3.18 `PSTricks' (tvz,hv)
+
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pstricks/pst-fp.tex
+`pst-fp' v0.06, 2020/11/20 (hv))
+File: pst-fp.tex 2020/11/20 v0.06 `PST-fp' (hv)
+)
+(/usr/local/texlive/2023/texmf-dist/tex/latex/pst-solides3d/pst-solides3d.sty
+Package: pst-solides3d 2017/03/03 package wrapper for pst-solides3d
+
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pst-solides3d/pst-solides3d.tex
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pst-node/pst-node.tex
+ v1.43, 2022/01/31
+\psrow=\count303
+\pscol=\count304
+\psmatrixcnt=\count305
+\psrowsep=\skip52
+\pscolsep=\skip53
+\pst@args=\count306
+\num@pts=\count307
+\pst@argcnt=\count308
+)
+(/usr/local/texlive/2023/texmf-dist/tex/generic/multido/multido.tex
+ v1.42, 2010/05/14 <tvz>
+\multido@count=\count309
+\multidocount=\count310
+\multido@stuff=\toks32
+) `PSTSOLIDESIIID' v4.34a, 2018/12/27
+\test@mode=\count311
+)
+File: pst-solides3d.tex 2018/12/27 v4.34a `PST-solides3D'
+)
+No auxiliary output files.
+
+Class revtex4-2 Info: Unrecognized LaTeX tabular. Please update this document c
+lass! (Proceeding with fingers crossed.) on input line 13.
+Class revtex4-2 Info: cite was not loaded (OK!) on input line 13.
+Class revtex4-2 Info: mcite was not loaded (OK!) on input line 13.
+Class revtex4-2 Info: multicol was not loaded (OK!) on input line 13.
+No file spc.aux.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 13.
+LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 1
+3.
+(/usr/local/texlive/2023/texmf-dist/tex/latex/base/ts1cmr.fd
+File: ts1cmr.fd 2022/07/10 v2.5l Standard LaTeX font definitions
+)
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+
+(/usr/local/texlive/2023/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count312
+\scratchdimen=\dimen179
+\scratchbox=\box74
+\nofMPsegments=\count313
+\nofMParguments=\count314
+\everyMPshowfont=\toks33
+\MPscratchCnt=\count315
+\MPscratchDim=\dimen180
+\MPnumerator=\count316
+\makeMPintoPDFobject=\count317
+\everyMPtoPDFconversion=\toks34
+)
+\openout3 = spcNotes.bib
+
+No file spc.bbl.
+[1])
+
+Here is how much of LuaTeX's memory you used:
+ 13169 strings out of 478285
+ 100000,1977958 words of node,token memory allocated
+ 491 words of node memory still in use:
+   7 hlist, 2 vlist, 1 rule, 1 glue, 3 kern, 1 glyph, 9 attribute, 54 glue_spec,
+ 9 attribute_list nodes
+   avail lists: 2:202,3:27,4:235,5:27,6:3,7:105,9:115
+ 33025 multiletter control sequences out of 65536+600000
+ 18 fonts using 1073031 bytes
+ 75i,5n,86p,603b,263s stack positions out of 10000i,1000n,20000p,200000b,200000s
+Output written on spc.pdf (1 page, 28233 bytes).
+
+PDF statistics: 12 PDF objects out of 1000 (max. 8388607)
+ 0 named destinations out of 1000 (max. 131072)
+ 11 words of extra memory for PDF output out of 10000 (max. 100000000)
+

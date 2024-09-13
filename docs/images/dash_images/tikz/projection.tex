@@ -1,0 +1,61 @@
+\documentclass[border=5,multi={tikzpicture},convert=imagemagick]{standalone}
+%border=15
+\usepackage[utf8]{inputenc}
+\usepackage[svgnames,names]{xcolor}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+\usepackage[T2A,T1]{fontenc}
+\usepackage{fourier}
+
+\begin{document}
+
+\begin{tikzpicture}
+\node [black] (A) at (0,-0.5) {HQHP};
+\draw (0,0.7) ellipse (2.6cm and 1.9cm);
+\node [black] (B) at (0,1) {QHP};
+\draw (0,1.5) ellipse (1.7cm and 1cm);
+\node [black] (C) at (0,2) {2D toric};
+\draw (0,2) ellipse (0.8cm and 0.4cm);
+\node [black] (D) at (1.5,0.3) {nD toric};
+\draw (1.5,0.3) ellipse (0.8cm and 0.4cm);
+
+%right part for projection
+\def \w{6}
+\node [black] (a) at (0+\w,-0.5) {Subsystem product};
+\draw (0+\w,0.7) ellipse (2.6cm and 1.9cm);
+\node [black] (b) at (0+\w,1) {Subsystem QHP};
+\draw (0+\w,1.5) ellipse (1.7cm and 1cm);
+\node [black] (c) at (0+\w,2) {Bacon Shor};
+\draw (0+\w,2) ellipse (1cm and 0.4cm);
+%\node [black] (d) at (1.5+\w,0.3) {nD toric};
+%\draw (1.5+\w,0.3) ellipse (0.8cm and 0.4cm);
+
+
+
+%\node [black] (b) at (5,1) {Subsystem QHP};
+%\draw (1,0) ellipse (2cm and 1cm);
+
+%path for projection
+ \path [->] (A) edge[blue] node[below] { } (a);
+ \path [->] (B) edge[blue] node[above] {} (b);
+ \path [->] (C) edge[blue] node[above] {\color{blue} projection} (c);
+ \path [->] (D) edge[blue] node[above] {} (c);
+ 
+ 
+ \draw (-1.1+\w,-2.1) ellipse (1.5cm and 1.3cm);
+ \node [black] (e) at (-1.2+\w,-2) {Concatenated};
+ 
+ \draw (1.1+\w,-2.1) ellipse (1.5cm and 1.3cm);
+ \node [black, text width=1cm] (f) at (1.1+\w,-2.1) {Homological\\  product};
+
+ \node [red, text width=1cm] (g) at (0+\w,-1.2) {gauge fixing};
+
+ 
+ %\node[blue ] at (5,3) {$y = \sin x$};
+% \draw (1,0) ellipse (2cm and 1cm);
+\end{tikzpicture}
+
+
+
+\end{document}
