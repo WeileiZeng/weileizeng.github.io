@@ -1,7 +1,7 @@
 # Personal website
 Author:  Weilei Zeng
-
-Dated: May 4th, 2024
+Dated: Sept 13th, 2024
+First date: May 4th, 2024
 
 
 Phylosophy of the website project:
@@ -75,14 +75,18 @@ Done. Your new project is available at /Users/weileizeng/Documents/GitHub/min-we
 
 *How to add statics files*
 
-- There are two folders for static files: `content/images` and `output/static`. Static files will stay as it is and not be built. It is good for images, pdf, or html files.
+- There are two folders for static files: `content/images` and `output/static`. Static files will stay as it is and not be built. It is good for images, pdf, or html files. use `![](images/my-image.png)` in the markdown file
 
 *How to build and publish*
 
-- First develop  it locally, follow command in [`web/Makefile`](web/Makefile)
-- When things get ready, update the built page into [`docs`](docs), following cmd in [`Makefile`](Makefile). Then push the changes to GitHub. One can verify status by visiting the online page, or check out [GitHub Actions](https://github.com/WeileiZeng/weileizeng.github.io/actions).
+- First develop  it locally, follow command in [`web/Makefile`](web/Makefile). Try `make devserver` in `web` folder.
+- When things get ready, update the built page into [`docs`](docs), following cmd in [`Makefile`](Makefile). Then push the changes to GitHub. One can verify status by visiting the online page, or check out [GitHub Actions](https://github.com/WeileiZeng/weileizeng.github.io/actions). Try `make` in this folder, which do all this automatically.
 
-# Additional modification to the theme
+*How to add formulas*
+
+- see [template](web/about/template-for-post-on-this-website.md)
+
+# Additional modification to the original theme
 - add faricon
 - add logo
 - add author in article bottom
