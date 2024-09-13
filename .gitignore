@@ -3,3 +3,4 @@ env/
 __pycache__/
 web/output/
 .DS_Store
+\#*
