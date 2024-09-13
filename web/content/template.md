@@ -16,13 +16,23 @@ A fancy list
 -  item
 
 some `Python` code
-```
+
+```Python
 def main():
     print('hello world')
 ```
 
+
+```
 Basic Math $x$
 $$f(x) = \sum_i x^i$$
+```
+will be rendered as
+
+Basic Math $x$
+$$f(x) = \sum_i x^i$$
+
+(In dev model on mac, the equations may not update imediately)
 
 *Picture*
 
